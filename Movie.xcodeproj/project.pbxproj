@@ -48,6 +48,11 @@
 		F866488222D5ACD000AC408D /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488122D5ACD000AC408D /* MovieListViewModel.swift */; };
 		F866488522D5AD0D00AC408D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488422D5AD0D00AC408D /* Movie.swift */; };
 		F866488722D5AD2E00AC408D /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488622D5AD2E00AC408D /* MovieRepository.swift */; };
+		F866488922D5CF1300AC408D /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488822D5CF1300AC408D /* MovieDetails.swift */; };
+		F866488B22D5CF3B00AC408D /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488A22D5CF3B00AC408D /* Collection.swift */; };
+		F866488D22D5CFE400AC408D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488C22D5CFE400AC408D /* Genre.swift */; };
+		F866488F22D5D05400AC408D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866488E22D5D05400AC408D /* Company.swift */; };
+		F866489122D5D0C400AC408D /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F866489022D5D0C400AC408D /* Language.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +122,11 @@
 		F866488122D5ACD000AC408D /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		F866488422D5AD0D00AC408D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		F866488622D5AD2E00AC408D /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		F866488822D5CF1300AC408D /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		F866488A22D5CF3B00AC408D /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		F866488C22D5CFE400AC408D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		F866488E22D5D05400AC408D /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		F866489022D5D0C400AC408D /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +358,11 @@
 			isa = PBXGroup;
 			children = (
 				F866488422D5AD0D00AC408D /* Movie.swift */,
+				F866488822D5CF1300AC408D /* MovieDetails.swift */,
+				F866488A22D5CF3B00AC408D /* Collection.swift */,
+				F866488C22D5CFE400AC408D /* Genre.swift */,
+				F866488E22D5D05400AC408D /* Company.swift */,
+				F866489022D5D0C400AC408D /* Language.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,9 +557,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F866486722D582AE00AC408D /* NavigationControllerHelper.swift in Sources */,
+				F866488922D5CF1300AC408D /* MovieDetails.swift in Sources */,
 				F866487922D582AE00AC408D /* Request.swift in Sources */,
 				F866487C22D582C600AC408D /* GlobalConstant.swift in Sources */,
 				F866487022D582AE00AC408D /* StringHelper.swift in Sources */,
+				F866489122D5D0C400AC408D /* Language.swift in Sources */,
 				F866486522D582AE00AC408D /* AppDelegate.swift in Sources */,
 				F866485D22D582AE00AC408D /* BaseTableViewController.swift in Sources */,
 				F866488522D5AD0D00AC408D /* Movie.swift in Sources */,
@@ -566,8 +583,11 @@
 				F866487122D582AE00AC408D /* GlobalVMFactory.swift in Sources */,
 				F866486822D582AE00AC408D /* ColorHelper.swift in Sources */,
 				F866488022D5ACAA00AC408D /* MovieListViewController.swift in Sources */,
+				F866488B22D5CF3B00AC408D /* Collection.swift in Sources */,
+				F866488D22D5CFE400AC408D /* Genre.swift in Sources */,
 				F866486B22D582AE00AC408D /* ViewControllerHelper.swift in Sources */,
 				F866486D22D582AE00AC408D /* ArrayHelper.swift in Sources */,
+				F866488F22D5D05400AC408D /* Company.swift in Sources */,
 				F866487E22D5ABC200AC408D /* BaseVMRepo.swift in Sources */,
 				F866486C22D582AE00AC408D /* ImageHelper.swift in Sources */,
 				F866486022D582AE00AC408D /* LoaderCell.swift in Sources */,
