@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListViewController: BaseTableViewController<MovieListViewModel> {
+class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,4 +27,15 @@ class MovieListViewController: BaseTableViewController<MovieListViewModel> {
     }
     */
 
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        
+        return viewModel?.movies?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 }
+

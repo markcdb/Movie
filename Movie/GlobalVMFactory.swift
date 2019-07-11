@@ -10,14 +10,15 @@ import Foundation
 
 class GlobalVMFactory {
     
-    /*
-    static func createContactListVM(repository: ContactsRepository? = nil,
-                                    delegate: BaseVMDelegate) -> ContactListVM {
-        let viewModel = ContactListVM(delegate: delegate,
-                                      repository: repository ?? ContactsRepository())
+    static func createMovieListVM(repository: MovieRepository? = nil,
+                                  delegate: BaseVMDelegate) -> MovieListViewModel {
+        let viewModel = MovieListViewModel(delegate: delegate,
+                                           repository: repository ?? MovieRepository())
+        
         return viewModel
     }
     
+    /*
     static func createContactDetailsVM(repository: ContactsRepository? = nil,
                                        delegate: BaseVMDelegate) -> ContactDetailsVM {
         

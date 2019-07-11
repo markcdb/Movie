@@ -12,8 +12,8 @@ protocol RepositoryProtocol {
     
     associatedtype T: Codable
 
-    func getList(params: T?,
-                 completion: @escaping (([T]?, Error?) -> ()))
+    func getList<U>(params: U?,
+                    completion: @escaping (([T]?, Error?) -> ()))
     
     func get<U>(params: U?,
                 completion: @escaping ((T?, Error?) -> ()))
@@ -58,8 +58,8 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
         api = API(host: NetworkConfig.baseUrl)
     }
 
-    func getList(params: T?,
-                 completion: @escaping ArrayC) {}
+    func getList<U>(params: U?,
+                    completion: @escaping ArrayC) {}
     
     func get<U>(params: U?,
                 completion: @escaping SingleC) {}
@@ -95,7 +95,7 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
     internal func createSuccessAndFail<T: Codable>(_ request: Request,
                                                    completion: @escaping ((T?, Error?) -> ()),
                                                    operationBlock: ((inout T, DispatchGroup) -> ())? = nil ) {
-        
+
         request.successCompletion = {[weak self] response in
             guard let self = self else { return }
             self.background.async {

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol BaseVMDelegate: class {
     
@@ -16,11 +18,13 @@ protocol BaseVMDelegate: class {
 
 class BaseVM {
     
-    open var viewState: ViewState? {
+    open var disposeBag: DisposeBag = DisposeBag()
+    
+    open var viewState: BehaviorRelay<ViewState?>? {
         didSet {
-            if let viewState = viewState {
+            if let state = viewState?.value {
                 delegate?.didUpdateModel(self,
-                                         withState: viewState)
+                                         withState: state)
             }
         }
     }
@@ -29,5 +33,15 @@ class BaseVM {
     
     init(delegate: BaseVMDelegate) {
         self.delegate = delegate
+    }
+    
+    internal func startBinding() {
+        viewState?.bind(onNext: {[weak self] viewState in
+            guard let self = self else { return }
+            
+            if let state = viewState {
+                self.delegate?.didUpdateModel(self, withState: state)
+            }
+        }).disposed(by: disposeBag)
     }
 }

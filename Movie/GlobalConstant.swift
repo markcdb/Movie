@@ -11,14 +11,15 @@ import UIKit
 
 struct NetworkConfig {
     
-    static let baseUrl = "http://gojek-contacts-app.herokuapp.com"
+    static let baseUrl = "https://api.themoviedb.org/3"
+    static let apiKey  = "328c283cd27bd1877d9080ccb1604c91"
 }
 
 struct Paths {
     
     static let testPath = "XCTestConfigurationFilePath"
-    static let contacts = "/contacts.json" //GET & POST
-    static let contact  = "/contacts/\(URLParameters.id).json" //GET, PUT & DELETE
+    static let discover = "/discover/movie" //GET & POST
+    static let movie    = "/movie/\(URLParameters.id)" //GET, PUT & DELETE
 }
 
 struct Keys {
@@ -31,7 +32,7 @@ struct Keys {
     static let error         = "error"
     static let hosts         = "hosts"
     static let hostResponses = "hostResponses"
-    static let sortKeys      = ["A", "B", "C", "D", "E", ""]
+    static let apiKey        = "api_key"
 }
 
 struct Cells {

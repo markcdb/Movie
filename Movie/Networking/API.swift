@@ -56,14 +56,18 @@ class API {
     internal func request(request: Request?) {
         guard let request = request else { return }
         
-        let parametersDict: [String: Any]? = request.parameters
+        var parametersDict                 = request.parameters
         let method                         = request.method
         let path                           = request.path
         
         let completion: (_ result: JSONResult) -> Void = request.getCompletion()
         
+        //Inject the API Key
+        injectAPIKey(parameters: &parametersDict)
+
         print("Requesting from: \(path)\nWith: \(method.rawValue)")
         
+        //Check the request type
         switch method {
         case .get:
             var queryString   = ""
@@ -75,6 +79,7 @@ class API {
             }
           
             self.networking?.get("\(path)\(queryString)",
+                                parameters: parametersDict,
                                 completion: completion)
         case .post:
             
@@ -96,6 +101,17 @@ class API {
     }
 }
 
+extension API {
+    
+    internal func injectAPIKey(_ key: String? = NetworkConfig.apiKey,
+                               parameters: inout [String: Any]?) {
+        if parameters == nil {
+            parameters = [:]
+        }
+        
+        parameters?[Keys.apiKey] = key
+    }
+}
 class MockAPI: API {
     
     var failable: Bool?
