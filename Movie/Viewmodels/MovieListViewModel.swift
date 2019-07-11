@@ -18,7 +18,6 @@ class MovieListViewModel: BaseVMRepo<MovieRepository> {
                   repository: MovieRepository) {
         super.init(delegate: delegate,
                    repository: repository)
-        self.startBinding()
     }
     
     override func startBinding() {
@@ -28,7 +27,7 @@ class MovieListViewModel: BaseVMRepo<MovieRepository> {
     override func request() {
         super.request()
         
-        self.viewState?.accept(.loading(nil))
+        self.viewState.accept(.loading(nil))
         
         repository?.getList(params: "",
                             completion: {[weak self] (movies, error) in
@@ -37,12 +36,13 @@ class MovieListViewModel: BaseVMRepo<MovieRepository> {
                                 }
                                 
                                 if error != nil {
-                                    self.viewState?.accept(.error(nil))
+                                    self.viewState.accept(.error(nil))
                                     return
                                 }
                                 
                                 self.movies = movies
-                                self.viewState?.accept(.success(nil))
+                                self.viewState
+                                    .accept(.success(nil))
         })
     }
 }

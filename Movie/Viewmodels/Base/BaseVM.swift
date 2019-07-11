@@ -18,28 +18,22 @@ protocol BaseVMDelegate: class {
 
 class BaseVM {
     
-    open var disposeBag: DisposeBag = DisposeBag()
-    
-    open var viewState: BehaviorRelay<ViewState?>? {
-        didSet {
-            if let state = viewState?.value {
-                delegate?.didUpdateModel(self,
-                                         withState: state)
-            }
-        }
-    }
+    open var viewState: BehaviorRelay<ViewState?> = BehaviorRelay(value: nil)
     
     open weak var delegate: BaseVMDelegate?
     
+    open var disposeBag: DisposeBag = DisposeBag()
+
     init(delegate: BaseVMDelegate) {
         self.delegate = delegate
+        startBinding()
     }
     
     internal func startBinding() {
-        viewState?.bind(onNext: {[weak self] viewState in
+       viewState.subscribe(onNext: {[weak self] state in
             guard let self = self else { return }
             
-            if let state = viewState {
+            if let state = state {
                 self.delegate?.didUpdateModel(self, withState: state)
             }
         }).disposed(by: disposeBag)
