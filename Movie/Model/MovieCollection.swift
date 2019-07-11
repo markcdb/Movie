@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Collection: Codable {
+struct MovieCollection: Codable {
     
     var id: Int?
     var name: String?

@@ -95,7 +95,7 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
     internal func createSuccessAndFail<T: Codable>(_ request: Request,
                                                    completion: @escaping ((T?, Error?) -> ()),
                                                    operationBlock: ((inout T, DispatchGroup) -> ())? = nil ) {
-
+        
         request.successCompletion = {[weak self] response in
             guard let self = self else { return }
             self.background.async {
@@ -121,10 +121,20 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
                         self.group.leave()
                         return
                     }
-                   
-                    var object = try JSONDecoder().decode(T.self,
-                                                          from: response.data)
                     
+                    var object: T
+                    
+                    if let arrayCodable = try? JSONDecoder().decode(ResponseArray<T>.self,
+                                                                    from: response.data),
+                        let res = arrayCodable.results {
+                        
+                        object = res
+                    } else {
+                        
+                        object = try JSONDecoder().decode(T.self,
+                                                          from: response.data)
+                    }
+
                     if let block = operationBlock {
                         block(&object, self.group)
                     } else {

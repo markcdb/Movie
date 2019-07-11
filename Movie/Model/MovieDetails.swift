@@ -10,7 +10,7 @@ import Foundation
 
 class MovieDetails: Movie {
     
-    var belongs_to_collection: Collection?
+    var belongs_to_collection: MovieCollection?
     var budget: Int?
     var genres: [Genre]?
     var homepage: String?
