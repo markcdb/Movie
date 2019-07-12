@@ -10,9 +10,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MovieListViewModel: BaseVMRepo<MovieRepository> {
+class MovieListViewModel: BaseMovieListVM {
     
-    var movies: [MovieDetails] = []
     var movieSorter: MovieSorter?
     
     override init(delegate: BaseVMDelegate?,

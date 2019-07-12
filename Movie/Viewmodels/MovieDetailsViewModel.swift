@@ -8,10 +8,9 @@
 
 import Foundation
 
-class MovieDetailsViewModel: BaseVMRepo<MovieRepository> {
+class MovieDetailsViewModel: BaseMovieDetailsVM {
     
     var id: Int?
-    var movie: MovieDetails?
     
     override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {

@@ -11,8 +11,9 @@ import UIKit
 
 struct NetworkConfig {
     
-    static let baseUrl = "https://api.themoviedb.org/3"
-    static let apiKey  = "328c283cd27bd1877d9080ccb1604c91"
+    static let baseImageUrl = "https://image.tmdb.org/t/p/\(URLParameters.width)"
+    static let baseUrl      = "https://api.themoviedb.org/3"
+    static let apiKey       = "328c283cd27bd1877d9080ccb1604c91"
 }
 
 struct Paths {
@@ -58,7 +59,8 @@ struct StoryboardIDs {
 
 struct URLParameters {
     
-    static let id = "$[id]"
+    static let id    = "$[id]"
+    static let width = "$[width]"
 }
 
 struct Titles {

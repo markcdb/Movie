@@ -111,4 +111,28 @@ extension String {
         
         return letters
     }
+    
+    internal func getFormattedDate(_ dateString: String) -> String? {
+        guard let date = dateString.toDate() else { return nil }
+        
+        return date.toWordFormat()
+    }
+    
+    internal func getImageUrlString(_ path: String,
+                                    withSize size: Int?) -> String? {
+        var stringSize = "original"
+        
+        var widthSize: Int?
+        
+        if let size = size {
+            //Size lower than 200 will cause the api to return error
+            widthSize    = size < 200 ? 200 : size
+            stringSize   = "w\(widthSize ?? 0)"
+        }
+        
+        let url        = NetworkConfig.baseImageUrl.replacingOccurrences(of: URLParameters.width,
+                                                                         with: stringSize)
+        
+        return url.appending(path)
+    }
 }

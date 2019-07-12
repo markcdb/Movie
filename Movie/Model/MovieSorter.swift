@@ -58,9 +58,7 @@ struct MovieSorter: Codable {
     }
     
     static func defaultWithReleaseDate() -> MovieSorter {
-        let date = Date()
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "yyyy-MM-dd"
+       
         
         return MovieSorter(language: nil,
                            region: nil,
@@ -71,7 +69,7 @@ struct MovieSorter: Codable {
                            include_video: nil,
                            page: 1,
                            primary_release_year: nil,
-                           primary_release_date: dateFormat.string(from: date),
+                           primary_release_date: Date().toYearMonthDayFormat(),
                            with_cast: nil,
                            with_crew: nil,
                            with_companies: nil,
