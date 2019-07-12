@@ -24,7 +24,7 @@ class BaseVMRepo<T: RepositoryProtocol>: BaseVM, BaseVMRequestProtocol {
         repository?.retry()
     }
     
-    init(delegate: BaseVMDelegate,
+    init(delegate: BaseVMDelegate?,
          repository: T) {
         super.init(delegate: delegate)
         

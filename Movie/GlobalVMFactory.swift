@@ -11,20 +11,19 @@ import Foundation
 class GlobalVMFactory {
     
     static func createMovieListVM(repository: MovieRepository? = nil,
-                                  delegate: BaseVMDelegate) -> MovieListViewModel {
+                                  delegate: BaseVMDelegate?) -> MovieListViewModel {
         let viewModel = MovieListViewModel(delegate: delegate,
                                            repository: repository ?? MovieRepository())
         
         return viewModel
     }
     
-    /*
-    static func createContactDetailsVM(repository: ContactsRepository? = nil,
-                                       delegate: BaseVMDelegate) -> ContactDetailsVM {
+    static func createMovieDetailsVM(repository: MovieDetailsRepository? = nil,
+                                     delegate: BaseVMDelegate?) -> MovieDetailsViewModel {
         
-        let viewModel = ContactDetailsVM(delegate: delegate,
-                                         repository: repository ?? ContactsRepository())
+        let viewModel = MovieDetailsViewModel(delegate: delegate,
+                                              repository: repository ?? MovieDetailsRepository())
+        
         return viewModel
     }
-    */
 }

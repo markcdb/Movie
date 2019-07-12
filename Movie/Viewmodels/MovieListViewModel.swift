@@ -12,12 +12,15 @@ import RxCocoa
 
 class MovieListViewModel: BaseVMRepo<MovieRepository> {
     
-    var movies: [Movie]?
+    var movies: [Movie] = []
+    var movieSorter: MovieSorter?
     
-    override init(delegate: BaseVMDelegate,
+    override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {
         super.init(delegate: delegate,
                    repository: repository)
+        
+        movieSorter = MovieSorter.defaultWithReleaseDate()
     }
     
     override func startBinding() {
@@ -27,9 +30,9 @@ class MovieListViewModel: BaseVMRepo<MovieRepository> {
     override func request() {
         super.request()
         
-        self.viewState.accept(.loading(nil))
+        viewState.accept(.loading(nil))
         
-        repository?.getList(params: "",
+        repository?.getList(params: movieSorter,
                             completion: {[weak self] (movies, error) in
                                 guard let self = self else {
                                     return
@@ -40,9 +43,13 @@ class MovieListViewModel: BaseVMRepo<MovieRepository> {
                                     return
                                 }
                                 
-                                self.movies = movies
-                                self.viewState
-                                    .accept(.success(nil))
+                                let page = (self.movieSorter?.page ?? 0) + 1
+                                self.movieSorter?.page = page
+                                
+                                self.movies.append(contentsOf: movies ?? [])
+                                
+                                print("Current Array Count: \(self.movies.count)")
+                                self.viewState.accept(.success(nil))
         })
     }
 }

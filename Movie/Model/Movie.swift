@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Movie: Codable {
+struct Movie: Codable {
     
     var id: Int?
     var vote_count: Int?

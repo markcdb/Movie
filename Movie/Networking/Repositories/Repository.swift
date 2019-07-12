@@ -11,18 +11,18 @@ import Foundation
 protocol RepositoryProtocol {
     
     associatedtype T: Codable
-
+    
     func getList<U>(params: U?,
                     completion: @escaping (([T]?, Error?) -> ()))
     
     func get<U>(params: U?,
                 completion: @escaping ((T?, Error?) -> ()))
     
-    func create(params: T?,
-                completion: @escaping ((T?, Error?) -> ()))
+    func create<U>(params: U?,
+                   completion: @escaping ((T?, Error?) -> ()))
     
-    func edit(params: T?,
-              completion: @escaping ((T?, Error?) -> ()))
+    func edit<U>(params: U?,
+                 completion: @escaping ((T?, Error?) -> ()))
     
     func delete<U>(params: U?,
                    completion: @escaping ((T?, Error?) -> ()))
@@ -64,11 +64,11 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
     func get<U>(params: U?,
                 completion: @escaping SingleC) {}
     
-    func create(params: T?,
-                completion: @escaping SingleC) {}
+    func create<U>(params: U?,
+                   completion: @escaping SingleC) {}
     
-    func edit(params: T?,
-              completion: @escaping SingleC) {}
+    func edit<U>(params: U?,
+                 completion: @escaping SingleC) {}
     
     func delete<U>(params: U?,
                    completion: @escaping SingleC) {}
@@ -161,5 +161,7 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
             
             completion(nil, response)
         }
+        
+        requests.append(request)
     }
 }

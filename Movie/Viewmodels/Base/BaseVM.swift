@@ -24,7 +24,7 @@ class BaseVM {
     
     open var disposeBag: DisposeBag = DisposeBag()
 
-    init(delegate: BaseVMDelegate) {
+    init(delegate: BaseVMDelegate?) {
         self.delegate = delegate
         startBinding()
     }

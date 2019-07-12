@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ResponseArray<T: Codable>: Codable {
+struct ResponseArray<T: Codable>: Codable {
     
     var page: Int?
     var total_results: Int?

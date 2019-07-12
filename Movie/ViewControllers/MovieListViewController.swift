@@ -30,7 +30,7 @@ class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITa
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel?.movies?.count ?? 0
+        return viewModel?.movies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView,

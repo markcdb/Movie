@@ -78,9 +78,9 @@ class API {
                                 withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? ""
             }
           
-            self.networking?.get("\(path)\(queryString)",
-                                parameters: parametersDict,
-                                completion: completion)
+            self.networking?.get(path,
+                                 parameters: parametersDict,
+                                 completion: completion)
         case .post:
             
             self.networking?.post(path,
