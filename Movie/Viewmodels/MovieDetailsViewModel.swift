@@ -8,13 +8,13 @@
 
 import Foundation
 
-class MovieDetailsViewModel: BaseVMRepo<MovieDetailsRepository> {
+class MovieDetailsViewModel: BaseVMRepo<MovieRepository> {
     
     var id: Int?
     var movie: MovieDetails?
     
     override init(delegate: BaseVMDelegate?,
-                  repository: MovieDetailsRepository) {
+                  repository: MovieRepository) {
         super.init(delegate: delegate,
                    repository: repository)
     }

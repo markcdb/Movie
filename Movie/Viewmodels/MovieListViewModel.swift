@@ -12,7 +12,7 @@ import RxCocoa
 
 class MovieListViewModel: BaseVMRepo<MovieRepository> {
     
-    var movies: [Movie] = []
+    var movies: [MovieDetails] = []
     var movieSorter: MovieSorter?
     
     override init(delegate: BaseVMDelegate?,

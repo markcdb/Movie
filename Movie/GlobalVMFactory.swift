@@ -18,11 +18,11 @@ class GlobalVMFactory {
         return viewModel
     }
     
-    static func createMovieDetailsVM(repository: MovieDetailsRepository? = nil,
+    static func createMovieDetailsVM(repository: MovieRepository? = nil,
                                      delegate: BaseVMDelegate?) -> MovieDetailsViewModel {
         
         let viewModel = MovieDetailsViewModel(delegate: delegate,
-                                              repository: repository ?? MovieDetailsRepository())
+                                              repository: repository ?? MovieRepository())
         
         return viewModel
     }

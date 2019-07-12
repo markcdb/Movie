@@ -12,12 +12,12 @@ import XCTest
 class MovieDetailsTests: XCTestCase {
 
     var viewModel: MovieDetailsViewModel?
-    var api: MockMovieDetailsRepository?
+    var api: MockMovieRepository?
     var expectation: XCTestExpectation?
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        api         = MockMovieDetailsRepository()
+        api         = MockMovieRepository()
         viewModel   = GlobalVMFactory.createMovieDetailsVM(repository: api,
                                                            delegate: self)
         

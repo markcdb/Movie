@@ -8,10 +8,10 @@
 
 import Foundation
 
-class MovieRepository: Repository<Movie> {
+class MovieRepository: Repository<MovieDetails> {
     
-    typealias SingleC   = ((Movie?, Error?) -> ())
-    typealias ArrayC    = (([Movie]?, Error?) -> ())
+    typealias SingleC   = ((MovieDetails?, Error?) -> ())
+    typealias ArrayC    = (([MovieDetails]?, Error?) -> ())
     
     override func getList<U: Codable>(params: U?,
                                       completion: @escaping ArrayC) {
@@ -26,6 +26,23 @@ class MovieRepository: Repository<Movie> {
                               method: .get)
         
         request.createParametersFrom(param)
+        
+        createSuccessAndFail(request,
+                             completion: completion)
+    }
+    
+    override func get<U: LosslessStringConvertible>(params: U?,
+                                                    completion: @escaping SingleC) {
+        guard let param = params else { return }
+        
+        super.get(params: params,
+                  completion: completion)
+        
+        let path = Paths.movie.replacingOccurrences(of: URLParameters.id,
+                                                    with: String(param))
+        
+        let request = Request(path: path,
+                              method: .get)
         
         createSuccessAndFail(request,
                              completion: completion)
