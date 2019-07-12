@@ -123,7 +123,7 @@ class MockAPI: API {
     private func createMockPathFrom(_ path: String,
                                     httpMethod: HTTPMethod) -> String {
         
-        return httpMethod.rawValue + "\(path.replacingOccurrences(of: "/", with: "-"))"
+        return httpMethod.rawValue + "\(path.replacingOccurrences(of: "/", with: "-")).json"
     }
 
     override func request(request: Request?) {

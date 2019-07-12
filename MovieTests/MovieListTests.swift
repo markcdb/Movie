@@ -42,11 +42,13 @@ class MovieListTests: XCTestCase {
     var testCase: TestCase?
     var expectation: XCTestExpectation?
     var viewModel: MovieListViewModel?
-    var api: MovieRepository?
+    var api: MockMovieRepository?
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        viewModel = GlobalVMFactory.createMovieListVM(delegate: self)
+        viewModel = GlobalVMFactory.createMovieListVM(repository: api,
+                                                      delegate: self)
+        
     }
 
     override func tearDown() {

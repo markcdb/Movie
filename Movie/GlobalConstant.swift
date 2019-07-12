@@ -135,4 +135,5 @@ struct Strings {
     static let delete         = "Delete"
     static let createdContact = "Successfully created NEW Contact! :)"
     static let successDelete  = "Successfully deleted contact. :("
+    static let mockId         = 429617
 }

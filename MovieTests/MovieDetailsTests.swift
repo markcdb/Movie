@@ -12,12 +12,12 @@ import XCTest
 class MovieDetailsTests: XCTestCase {
 
     var viewModel: MovieDetailsViewModel?
-    var api: MovieDetailsRepository?
+    var api: MockMovieDetailsRepository?
     var expectation: XCTestExpectation?
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        api         = MovieDetailsRepository()
+        api         = MockMovieDetailsRepository()
         viewModel   = GlobalVMFactory.createMovieDetailsVM(repository: api,
                                                            delegate: self)
         
@@ -29,14 +29,10 @@ class MovieDetailsTests: XCTestCase {
     
     func testRequest() {
         self.expectation = XCTestExpectation(description: "")
-
-        let listVM = GlobalVMFactory.createMovieListVM(delegate: nil)
-        listVM.request()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             
-            let id = listVM.movies.first?.id ?? 0
-            self.viewModel?.id = id
+            self.viewModel?.id = Strings.mockId
             self.viewModel?.request()
         }
         
