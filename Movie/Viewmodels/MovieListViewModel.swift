@@ -51,4 +51,10 @@ class MovieListViewModel: BaseMovieListVM {
                                 self.viewState.accept(.success(nil))
         })
     }
+    
+    internal func resetPage() {
+        
+        movieSorter?.page = 1
+        movies.removeAll()
+    }
 }

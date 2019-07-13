@@ -112,6 +112,7 @@ extension API {
         parameters?[Keys.apiKey] = key
     }
 }
+
 class MockAPI: API {
     
     var failable: Bool?

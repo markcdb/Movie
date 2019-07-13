@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITableViewDelegate, UITableViewDataSource {
+class MovieListViewController: BaseTableViewController<MovieListViewModel>,
+UITableViewDelegate,
+UITableViewDataSource {
 
     let cellIdentifiers = [Cells.loaderCell,
-                           Cells.emptyCell,
                            Cells.moviePreviewCell]
     
     override func viewDidLoad() {
@@ -24,9 +25,12 @@ class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITa
                                 forCellReuseIdentifier: id)
         }
         
-        tableView?.delegate     = self
-        tableView?.dataSource   = self
-        viewModel               = GlobalVMFactory.createMovieListVM(delegate: self)
+        tableView?.delegate        = self
+        tableView?.dataSource      = self
+        tableView?.tableFooterView = ViewFactory.createFooterLoaderView(tableView)
+        tableView?.refreshControl  = ViewFactory.createRefreshControler(self,
+                                                                        action: #selector(pullRefresh))
+        viewModel                  = VMFactory.createMovieListVM(delegate: self)
         viewModel?.request()
     }
     
@@ -62,7 +66,7 @@ class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITa
             return count
         }
         
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView,
@@ -71,64 +75,53 @@ class MovieListViewController: BaseTableViewController<MovieListViewModel>, UITa
         var cell: UITableViewCell?
         
         switch viewModel?.viewState.value {
-        case .loading(_)?:
-            cell = createLoaderCell(tableView: tableView,
-                                    indexPath: indexPath)
         case .success(_)?:
-            cell = createMoviePreviewCell(tableView: tableView,
-                                          indexPath: indexPath)
+            cell = CellFactory.createMoviePreviewCell(viewModel: viewModel,
+                                                      tableView: tableView,
+                                                      indexPath: indexPath)
         case .error(_)?:
-            cell = createErrorCell(tableView: tableView,
-                                   indexPath: indexPath)
+            cell = CellFactory.createErrorCell(tableView: tableView,
+                                               indexPath: indexPath)
         default:
             break
         }
         
         return cell ?? UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath,
+                              animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        if indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1),
+            viewModel?.viewState.value != .loading(nil) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.viewModel?.request()
+            }
+        }
+    }
 }
 
 //MARK: - Custom methods
 extension MovieListViewController {
-    private func createLoaderCell(tableView: UITableView,
-                                  indexPath: IndexPath) -> LoaderCell? {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.loaderCell,
-                                                 for: indexPath) as? LoaderCell
-        
-        cell?.selectionStyle = .none
-        cell?.loadingIndicator.startAnimating()
-        
-        return cell
-    }
     
-    private func createMoviePreviewCell(tableView: UITableView,
-                                        indexPath: IndexPath) -> MoviePreviewCell? {
+    @objc func pullRefresh() {
+        guard let state = viewModel?.viewState.value else { return }
+        guard state != .loading(nil) else {
+                tableView?.endRefreshing()
+                return
+        }
         
-        let id           = Cells.moviePreviewCell
-        let title        = viewModel?.getMovieTitleAt(indexPath.row)
-        let popularity   = viewModel?.getMoviePopularityAt(indexPath.row)
-        let posterPath   = viewModel?.getMoviePosterPathAt(indexPath.row)
-        let backdropPath = viewModel?.getBackdropPathAt(indexPath.row)
-        let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MoviePreviewCell
-        
-        let posterUrl    = posterPath?.getImageUrlStringWith(cell?.posterImage?.frame.width)
-        let backdropUrl  = backdropPath?.getImageUrlStringWith(cell?.backdropImage?.frame.width)
-        
-        cell?.setMovieImage(backdropUrl,
-                            posterUrl: posterUrl)
-        
-        cell?.setWith(title: title ?? "",
-                      subTitle: String(popularity ?? 0))
-        return cell
-    }
-
-    private func createErrorCell(tableView: UITableView,
-                                 indexPath: IndexPath) -> UITableViewCell? {
-        let id = Cells.emptyCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: id)
-        
-        return cell
+        tableView?.beginRefreshing()
+        viewModel?.resetPage()
+        viewModel?.request()
     }
 }
 
@@ -136,6 +129,13 @@ extension MovieListViewController {
 extension MovieListViewController: BaseVMDelegate {
     
     func didUpdateModelWithState(_ viewState: ViewState) {
-        tableView?.reloadData()
+        switch viewState {
+        case .success(_),
+             .error(_):
+            tableView?.endRefreshing()
+            tableView?.reloadData()
+        default:
+            break
+        }
     }
 }

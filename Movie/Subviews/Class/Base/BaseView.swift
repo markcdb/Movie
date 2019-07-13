@@ -1,14 +1,14 @@
 //
-//  SectionHeader.swift
+//  BaseView.swift
 //  Movie
 //
-//  Created by Mark Christian Buot on 03/07/2019.
+//  Created by Mark Christian Buot on 14/07/2019.
 //  Copyright © 2019 Mark Christian Buot. All rights reserved.
 //
 
 import UIKit
 
-class SectionHeader: UIView {
+class BaseView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -17,35 +17,22 @@ class SectionHeader: UIView {
         // Drawing code
     }
     */
-    @IBOutlet weak var container: UIView?
-    @IBOutlet weak var titleLabel: BaseLabel?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        initNib()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initNib()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initNib()
     }
     
-    private func initNib() {
+    internal func initNibWithName(_ name: String) {
         self.backgroundColor = .clear
-        Bundle.main.loadNibNamed(Nibs.sectionHeader,
+        Bundle.main.loadNibNamed(name,
                                  owner: self,
                                  options: nil)
-        container?.frame = bounds
-        container?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        if let container = container {
-            addSubview(container)
-        }
     }
 }
-

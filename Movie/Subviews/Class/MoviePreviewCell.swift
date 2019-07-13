@@ -21,20 +21,22 @@ class MoviePreviewCell: BaseCell {
         super.awakeFromNib()
         // Initialization code
         self.blurView?.isHidden             = true
-        self.subtitleDescription?.textColor  = Colors.darkGray
+        self.subtitleDescription?.textColor = Colors.darkGray
         self.titleLabel?.textColor          = Colors.darkGray
         self.subTitleLabel?.textColor       = Colors.darkGray
         self.titleLabel?.alpha              = 1
         self.subTitleLabel?.alpha           = 1
-        self.posterImage?.image             = nil
-        self.backdropImage?.image           = nil
+        self.posterImage?.backgroundColor   = Colors.getRandomColor()
         self.backdropImage?.isHidden        = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        let color = posterImage?.backgroundColor
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        if selected {
+            posterImage?.backgroundColor = color
+        }
     }
 }
 
@@ -43,26 +45,8 @@ extension MoviePreviewCell {
     
     internal func setMovieImage(_ backdropUrl: String?,
                                 posterUrl: String?) {
-        
-        if let backdropUrl = backdropUrl {
-            /*
-            setImageFrom(backdropUrl,
-                         imageView: &backdropImage) {[weak self] (image, error, cacheType, url) in
-                            guard let self = self,
-                                error == nil else { return }
-                            
-                            if image != nil {
-                                self.blurView?.isHidden             = false
-                                self.subtitleDescription?.textColor  = .white
-                                self.titleLabel?.textColor          = .white
-                                self.subTitleLabel?.textColor       = .white
-                                self.titleLabel?.alpha              = 0.7
-                                self.subTitleLabel?.alpha           = 0.7
-                                self.backdropImage?.isHidden        = false
-                            }
-            }
-            */
-        }
+        self.posterImage?.image             = nil
+        self.backdropImage?.image           = nil
         
         if let posterUrl = posterUrl {
             setImageFrom(posterUrl,

@@ -9,5 +9,7 @@
 import Foundation
 import UIKit
 
+typealias VCFactory = GlobalVCFactory
+
 class GlobalVCFactory {
 }

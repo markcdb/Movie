@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias VMFactory = GlobalVMFactory
+
 class GlobalVMFactory {
     
     static func createMovieListVM(repository: MovieRepository? = nil,

@@ -42,4 +42,18 @@ class BaseTableView: UITableView {
                                         height: 1)
         self.tableFooterView   = UIView(frame: frame)
     }
+    
+    func beginRefreshing() {
+        guard refreshControl?.isRefreshing == false else { return }
+        
+        refreshControl?.beginRefreshing()
+    }
+    
+    func endRefreshing() {
+        guard refreshControl != nil else { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.refreshControl?.endRefreshing()
+        }
+    }
 }

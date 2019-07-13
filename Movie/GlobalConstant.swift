@@ -48,7 +48,8 @@ struct Cells {
 
 struct Nibs {
     
-    static let sectionHeader       = "SectionHeader"
+    static let sectionHeaderView       = "SectionHeaderView"
+    static let loaderView              = "LoaderView"
 }
 
 struct StoryboardIDs {
@@ -83,6 +84,17 @@ struct Colors {
     static let blueGreen        = UIColor.hex("50E3C2")
     static let descriptorGray   = UIColor.hex("A1A1A1")
     static let destructiveRed   = UIColor.hex("FE4431")
+    
+    static let colors           = [UIColor.hex("2ECC71"),
+                                   UIColor.hex("E74C3C"),
+                                   UIColor.hex("8E44AD"),
+                                   UIColor.hex("D35400"),
+                                   UIColor.hex("F1C40F")]
+    
+    static func getRandomColor() -> UIColor {
+        
+        return Colors.colors[Int.random(in: 0..<Colors.colors.count)]
+    }
 }
 
 struct Fonts {
