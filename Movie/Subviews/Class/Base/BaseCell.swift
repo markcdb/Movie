@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class BaseCell: UITableViewCell {
     
@@ -20,13 +21,21 @@ class BaseCell: UITableViewCell {
         titleLabel?.font      = Fonts.helveticaNeue
     }
     
-    internal func setProfileImageFrom(_ urlString: String,
-                                      imageView: inout UIImageView?) {
+    internal func setImageFrom(_ urlString: String,
+                               imageView: inout UIImageView?,
+                               completion: CompletionHandler? = nil) {
         
         imageView?.setKFImage(with: urlString,
-                              placeholder: Images.placeholder_photo,
+                              placeholder: nil,
                               shouldAnimate: true,
                               keepCurrentImageWhileLoading: false,
-                              completion: nil)
+                              completion: completion)
+    }
+    
+    internal func setWith(title: String,
+                      subTitle: String) {
+        
+        titleLabel?.text    = title
+        subTitleLabel?.text = subTitle
     }
 }

@@ -109,18 +109,6 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
                 
                 do {
                     self.group.enter()
-                    //Try to check if response is of type ErrorResponse: Codable
-                    let errorCodable = try? JSONDecoder().decode(ErrorCodable.self,
-                                                                 from: response.data)
-                    
-                    if let errorCodable = errorCodable {
-                        let error       = ErrorResponse(errorCodable: errorCodable)
-                        self.main.async {
-                            completion(nil, error)
-                        }
-                        self.group.leave()
-                        return
-                    }
                     
                     var object: T
                     

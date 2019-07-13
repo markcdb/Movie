@@ -81,9 +81,7 @@ class MovieListTests: XCTestCase {
 }
 
 extension MovieListTests: BaseVMDelegate {
-    
-    func didUpdateModel(_ viewModel: BaseVM,
-                        withState viewState: ViewState) {
+    func didUpdateModelWithState(_ viewState: ViewState) {
         if viewState == .success(nil) {
             switch testCase {
             case .listRequest?:

@@ -12,8 +12,7 @@ import RxCocoa
 
 protocol BaseVMDelegate: class {
     
-    func didUpdateModel(_ viewModel: BaseVM,
-                        withState viewState: ViewState)
+    func didUpdateModelWithState(_ viewState: ViewState)
 }
 
 class BaseVM {
@@ -34,7 +33,7 @@ class BaseVM {
             guard let self = self else { return }
             
             if let state = state {
-                self.delegate?.didUpdateModel(self, withState: state)
+                self.delegate?.didUpdateModelWithState(state)
             }
         }).disposed(by: disposeBag)
     }

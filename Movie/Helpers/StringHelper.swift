@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     internal func isEnglishCharactersOnly() -> Bool {
@@ -118,21 +119,21 @@ extension String {
         return date.toWordFormat()
     }
     
-    internal func getImageUrlString(_ path: String,
-                                    withSize size: Int?) -> String? {
+    internal func getImageUrlStringWith(_ size: CGFloat?) -> String? {
         var stringSize = "original"
         
-        var widthSize: Int?
+        var widthSize: CGFloat?
         
         if let size = size {
             //Size lower than 200 will cause the api to return error
             widthSize    = size < 200 ? 200 : size
-            stringSize   = "w\(widthSize ?? 0)"
+            
+            stringSize   = "w\(Int(round((widthSize ?? 0) / 100.0) * 100.0))"
         }
         
         let url        = NetworkConfig.baseImageUrl.replacingOccurrences(of: URLParameters.width,
                                                                          with: stringSize)
         
-        return url.appending(path)
+        return url.appending(self)
     }
 }

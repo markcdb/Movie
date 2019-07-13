@@ -42,9 +42,7 @@ class MovieDetailsTests: XCTestCase {
 }
 
 extension MovieDetailsTests: BaseVMDelegate {
-    
-    func didUpdateModel(_ viewModel: BaseVM,
-                        withState viewState: ViewState) {
+    func didUpdateModelWithState(_ viewState: ViewState) {
         
         if viewState == .success(nil) {
             expectation?.fulfill()

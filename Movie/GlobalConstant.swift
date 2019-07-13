@@ -38,7 +38,7 @@ struct Keys {
 
 struct Cells {
     
-    static let contactCell         = "ContactCell"
+    static let moviePreviewCell         = "MoviePreviewCell"
     static let loaderCell          = "LoaderCell"
     static let emptyCell           = "EmptyCell"
     static let profileHeaderCell   = "ProfileHeaderCell"

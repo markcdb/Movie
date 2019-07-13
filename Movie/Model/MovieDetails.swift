@@ -35,4 +35,19 @@ struct MovieDetails: Codable {
     var spoken_languages: [Language]?
     var status: String?
     var tagline: String?
+    
+    static func getIsoLanguageStringFrom(_ languages: [Language]) -> [String] {
+        
+        return languages.compactMap({ $0.iso_639_1 ?? "" })
+    }
+    
+    static func getGenreNameStringFrom(_ genres: [Genre]) -> [String] {
+        
+        return genres.compactMap({ $0.name ?? "" })
+    }
+    
+    static func getCompanyNameStringFrom(_ companies: [Company]) -> [String] {
+        
+        return companies.compactMap({ $0.name ?? "" })
+    }
 }

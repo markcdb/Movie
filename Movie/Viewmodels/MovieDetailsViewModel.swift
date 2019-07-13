@@ -10,7 +10,7 @@ import Foundation
 
 class MovieDetailsViewModel: BaseMovieDetailsVM {
     
-    var id: Int?
+    internal var id: Int?
     
     override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {
