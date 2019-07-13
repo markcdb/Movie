@@ -47,7 +47,6 @@ class MovieListViewModel: BaseMovieListVM {
                                 
                                 self.movies.append(contentsOf: movies ?? [])
                                 
-                                print("Current Array Count: \(self.movies.count)")
                                 self.viewState.accept(.success(nil))
         })
     }

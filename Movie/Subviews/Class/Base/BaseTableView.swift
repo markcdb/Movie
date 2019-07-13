@@ -51,7 +51,6 @@ class BaseTableView: UITableView {
     
     func endRefreshing() {
         guard refreshControl != nil else { return }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.refreshControl?.endRefreshing()
         }

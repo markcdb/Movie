@@ -66,6 +66,7 @@ struct URLParameters {
 
 struct Titles {
     
+    static let movies   = "Movies"
     static let contacts = "Contacts"
 }
 

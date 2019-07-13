@@ -27,8 +27,7 @@ class GlobalViewFactory {
     static func createRefreshControler(_ target: Any,
                                        action: Selector) -> UIRefreshControl {
         let refreshControl = UIRefreshControl()
-        refreshControl.transform = CGAffineTransform(scaleX: 0.8,
-                                                     y: 0.8)
+      
         refreshControl.addTarget(target,
                                  action: action,
                                  for: .valueChanged)
