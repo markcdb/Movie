@@ -18,7 +18,6 @@ class BaseCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        titleLabel?.font      = Fonts.helveticaNeue
     }
     
     internal func setImageFrom(_ urlString: String,

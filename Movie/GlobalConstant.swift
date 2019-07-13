@@ -14,6 +14,7 @@ struct NetworkConfig {
     static let baseImageUrl = "https://image.tmdb.org/t/p/\(URLParameters.width)"
     static let baseUrl      = "https://api.themoviedb.org/3"
     static let apiKey       = "328c283cd27bd1877d9080ccb1604c91"
+    static let webUrl       = "https://www.cathaycineplexes.com.sg"
 }
 
 struct Paths {
@@ -38,7 +39,10 @@ struct Keys {
 
 struct Cells {
     
-    static let moviePreviewCell         = "MoviePreviewCell"
+    static let errorCell           = "ErrorCell"
+    static let movieDetailsCell    = "MovieDetailsCell"
+    static let moviePreviewCell    = "MoviePreviewCell"
+    static let movieHeaderCell     = "MovieHeaderCell"
     static let loaderCell          = "LoaderCell"
     static let emptyCell           = "EmptyCell"
     static let profileHeaderCell   = "ProfileHeaderCell"
@@ -54,6 +58,8 @@ struct Nibs {
 
 struct StoryboardIDs {
     
+    static let webView             = "WebViewController"
+    static let movieDetails        = "MovieDetailsViewController"
     static let contactDetails      = "ContactDetailsVC"
     static let createContact       = "CreateContactsVC"
 }
@@ -66,8 +72,10 @@ struct URLParameters {
 
 struct Titles {
     
-    static let movies   = "Movies"
-    static let contacts = "Contacts"
+    static let bookMovie = "Book movie"
+    static let movies    = "Movies"
+    static let details   = "Details"
+    static let contacts  = "Contacts"
 }
 
 struct Segues {
@@ -124,6 +132,7 @@ struct Notifications {
 
 struct Storyboard {
     
+    static let movie    = UIStoryboard(name: "Movie", bundle: nil)
     static let contacts = UIStoryboard(name: "Contacts", bundle: nil)
 }
 

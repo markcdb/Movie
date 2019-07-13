@@ -97,6 +97,13 @@ class BaseMovieDetailsVM: BaseVMRepo<MovieRepository> {
         return movie?.genres
     }
     
+    internal func getGenreString() -> String? {
+        
+        let array = movie?.genres?.compactMap({ $0.name ?? "" })
+        
+        return array?.joined(separator: ", ")
+    }
+    
     internal func getHomepage() -> String? {
         
         return movie?.homepage
@@ -122,9 +129,21 @@ class BaseMovieDetailsVM: BaseVMRepo<MovieRepository> {
         return movie?.runtime
     }
     
+    internal func getRuntimeString() -> String {
+        
+        return "\(getRuntime() ?? 0) minutes"
+    }
+    
     internal func getSpokenLanguage() -> [Language]? {
         
         return movie?.spoken_languages
+    }
+    
+    internal func getSpokenLanguageString() -> String? {
+        
+        let array = movie?.spoken_languages?.compactMap({ $0.name ?? "" })
+        
+        return array?.joined(separator: ", ")
     }
     
     internal func getStatus() -> String? {

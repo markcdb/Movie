@@ -11,7 +11,7 @@ import UIKit
 class BaseTableViewController<T: BaseVMRequestProtocol>: BaseVC<T> {
 
     @IBOutlet weak var tableView: BaseTableView?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

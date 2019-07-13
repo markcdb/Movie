@@ -28,7 +28,7 @@ class MovieDetailsViewModel: BaseMovieDetailsVM {
                             guard let self = self else { return }
                             
                             if error != nil {
-                                self.viewState.accept(.success(nil))
+                                self.viewState.accept(.error(nil))
                                 return
                             }
                             

@@ -28,4 +28,13 @@ class GlobalVMFactory {
         
         return viewModel
     }
+    
+    static func createWebVM(repository: MovieRepository? = nil,
+                            delegate: BaseVMDelegate?) -> WebViewModel {
+        
+        let viewModel = WebViewModel(delegate: delegate,
+                                     repository: repository ?? MovieRepository())
+        
+        return viewModel
+    }
 }

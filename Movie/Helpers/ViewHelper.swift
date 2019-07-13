@@ -24,4 +24,13 @@ extension UIView {
         
         self.pop_add(springAnimation, forKey: "springAnimation")
     }
+    
+    func setShadow() {
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.darkGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowRadius = 2.5
+        self.layer.shadowOpacity = 0.08
+    }
 }

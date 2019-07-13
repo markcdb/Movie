@@ -25,10 +25,10 @@ class GlobalCellFactory {
     }
     
     static func createErrorCell(tableView: UITableView,
-                                indexPath: IndexPath) -> UITableViewCell? {
+                                indexPath: IndexPath) -> ErrorCell? {
         
-        let id = Cells.emptyCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: id)
+        let id = Cells.errorCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: id) as? ErrorCell
         
         return cell
     }
@@ -52,6 +52,53 @@ class GlobalCellFactory {
         
         cell?.setWith(title: title ?? "",
                       subTitle: String(popularity ?? 0))
+        return cell
+    }
+    
+    static func createMovieHeaderCell(viewModel: MovieDetailsViewModel?,
+                                      tableView: UITableView,
+                                      indexPath: IndexPath) -> MovieHeaderCell? {
+        
+        let id           = Cells.movieHeaderCell
+        let posterPath   = viewModel?.getMoviePosterPath()
+        let backdropPath = viewModel?.getBackdropPath()
+        let title        = viewModel?.getMovieTitle()
+        let popularity   = viewModel?.getMoviePopularity()
+
+        //let duration     = viewMode
+        let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MovieHeaderCell
+        
+        let posterUrl    = posterPath?.getImageUrlStringWith(cell?.posterImage?.frame.width)
+        let backdropUrl  = backdropPath?.getImageUrlStringWith(cell?.backdropImage?.frame.width)
+        
+        cell?.setWith(title: title ?? "",
+                      subTitle: String(popularity ?? 0.0))
+        
+        cell?.setMovieImage(backdropUrl,
+                            posterUrl: posterUrl)
+        
+        return cell
+    }
+    
+    static func createMovieDetailsCell(viewModel: MovieDetailsViewModel?,
+                                       tableView: UITableView,
+                                       indexPath: IndexPath,
+                                       delegate: MovieDetailsCellDelegate) -> MovieDetailsCell? {
+        
+        let id           = Cells.movieDetailsCell
+        let sypnosis     = viewModel?.getOverview() ?? ""
+        let genres       = viewModel?.getGenreString() ?? ""
+        let languages    = viewModel?.getSpokenLanguageString() ?? ""
+        let runtime      = viewModel?.getRuntimeString()
+        
+        let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MovieDetailsCell
+        
+        cell?.sypnosisLabel?.text   = sypnosis.isEmpty == true ? "N/A" : sypnosis
+        cell?.genresLabel?.text     = genres.isEmpty == true ? "n/a" : genres
+        cell?.languagesLabel?.text  = languages.isEmpty == true ? "n/a" : languages
+        cell?.durationLabel?.text   = runtime
+        cell?.delegate              = delegate
+        
         return cell
     }
 }

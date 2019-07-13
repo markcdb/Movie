@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,6 +43,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="82.366071428571431"/>
+        </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="xB4-28-EZZ">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="9Ug-Ly-2vX" customClass="MovieDetailsViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6tr-YH-qNZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J2m-KB-PHD" customClass="BaseTableView" customModule="Movie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GZV-Ug-XVM" firstAttribute="bottom" secondItem="J2m-KB-PHD" secondAttribute="bottom" id="8Dp-Or-8ij"/>
+                            <constraint firstItem="J2m-KB-PHD" firstAttribute="top" secondItem="GZV-Ug-XVM" secondAttribute="top" id="Plw-Iw-7W9"/>
+                            <constraint firstItem="J2m-KB-PHD" firstAttribute="leading" secondItem="GZV-Ug-XVM" secondAttribute="leading" id="fO5-Kx-JyF"/>
+                            <constraint firstItem="GZV-Ug-XVM" firstAttribute="trailing" secondItem="J2m-KB-PHD" secondAttribute="trailing" id="uZm-ob-RFL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GZV-Ug-XVM"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="J2m-KB-PHD" id="eca-Gs-Ca4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V4C-of-d9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="82"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="7Oe-1X-T82">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="xzw-MG-U1M" customClass="WebViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZkE-Mm-HqH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qnw-AU-tQA" customClass="PagesWebView" customModule="Movie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qnw-AU-tQA" firstAttribute="top" secondItem="eKS-25-rPj" secondAttribute="top" id="D8l-CN-apx"/>
+                            <constraint firstItem="eKS-25-rPj" firstAttribute="bottom" secondItem="Qnw-AU-tQA" secondAttribute="bottom" id="JvE-XJ-JVO"/>
+                            <constraint firstItem="Qnw-AU-tQA" firstAttribute="leading" secondItem="eKS-25-rPj" secondAttribute="leading" id="WiS-yd-pCM"/>
+                            <constraint firstItem="eKS-25-rPj" firstAttribute="trailing" secondItem="Qnw-AU-tQA" secondAttribute="trailing" id="yDd-hx-sdz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eKS-25-rPj"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Qnw-AU-tQA" id="AH0-nf-F3p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="00o-un-2Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2712" y="82"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ire-xy-cfe">

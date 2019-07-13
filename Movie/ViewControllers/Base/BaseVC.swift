@@ -24,6 +24,11 @@ class BaseVC<T: BaseVMRequestProtocol>: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = attri
         }
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
+
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor    = Colors.blueGreen
     }
@@ -44,7 +49,7 @@ class BaseVC<T: BaseVMRequestProtocol>: UIViewController {
         super.viewDidDisappear(animated)
     }
     
-    open func pushTo(_ storyboardId: String) {}
+    open func push() {}
     
     open func setShadowImageFrom(color: UIColor = .clear) {
         

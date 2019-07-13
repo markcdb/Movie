@@ -38,7 +38,6 @@ enum TestCase: Equatable {
 
 class MovieListTests: XCTestCase {
 
-    
     var testCase: TestCase?
     var expectation: XCTestExpectation?
     var viewModel: MovieListViewModel?
