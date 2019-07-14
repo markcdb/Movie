@@ -126,7 +126,7 @@ extension String {
         
         if let size = size {
             //Size lower than 200 will cause the api to return error
-            widthSize    = size < 200 ? 200 : size
+            widthSize    = size < 200 ? 200 * 2 : size * 2
             
             stringSize   = "w\(Int(round((widthSize ?? 0) / 100.0) * 100.0))"
         }

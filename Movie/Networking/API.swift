@@ -132,13 +132,8 @@ class MockAPI: API {
         
         let method      = request.method
         let path        = request.path
-        var mockPath    = createMockPathFrom(request.path,
+        let mockPath    = createMockPathFrom(request.path,
                                              httpMethod: request.method)
-        
-        if failable == true {
-            mockPath    = mockPath.replacingOccurrences(of: ".json",
-                                                        with: "-failed.json")
-        }
         
         let mockRequest                 = Request(path: path,
                                                   method: request.method)
@@ -147,23 +142,55 @@ class MockAPI: API {
         
         switch method {
         case .get:
-            self.networking?.fakeGET(path,
-                                     fileName: mockPath,
-                                     bundle: Bundle.main)
+            if failable == true {
+                self.networking?.fakeGET(path,
+                                         response: generateFakeErrorResponse(),
+                                         statusCode: 401)
+            } else {
+                self.networking?.fakeGET(path,
+                                         fileName: mockPath,
+                                         bundle: Bundle.main)
+            }
+
         case .post:
-            self.networking?.fakePOST(path,
-                                      fileName: mockPath,
-                                      bundle: Bundle.main)
+            if failable == true {
+                self.networking?.fakePOST(path,
+                                         response: generateFakeErrorResponse(),
+                                         statusCode: 401)
+            } else {
+                self.networking?.fakePOST(path,
+                                          fileName: mockPath,
+                                          bundle: Bundle.main)
+            }
         case .put:
-            self.networking?.fakePUT(path,
-                                     fileName: mockPath,
-                                     bundle: Bundle.main)
+            if failable == true {
+                self.networking?.fakePUT(path,
+                                          response: generateFakeErrorResponse(),
+                                          statusCode: 401)
+            } else {
+                self.networking?.fakePUT(path,
+                                         fileName: mockPath,
+                                         bundle: Bundle.main)
+            }
+            
         case .delete:
-            self.networking?.fakeDELETE(path,
-                                        fileName: mockPath,
-                                        bundle: Bundle.main)
+            if failable == true {
+                self.networking?.fakeDELETE(path,
+                                         response: generateFakeErrorResponse(),
+                                         statusCode: 401)
+            } else {
+                self.networking?.fakeDELETE(path,
+                                         fileName: mockPath,
+                                         bundle: Bundle.main)
+            }
         }
         
         super.request(request: mockRequest)
+    }
+    
+    func generateFakeErrorResponse() -> ErrorResponse {
+        
+        return ErrorResponse(statusCode: "401",
+                             error: "Unauthorized")
     }
 }

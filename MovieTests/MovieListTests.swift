@@ -13,6 +13,9 @@ enum TestCase: Equatable {
     
     case listRequest
     case pageRequest(Bool)
+    case imageUrl
+    case pullToRefresh
+    case fail
     
     static func == (lhs: TestCase, rhs: TestCase) -> Bool {
         
@@ -20,6 +23,12 @@ enum TestCase: Equatable {
         case (.listRequest, .listRequest):
             return true
         case (.pageRequest(_), .pageRequest(_)):
+            return true
+        case (.imageUrl, .imageUrl):
+            return true
+        case (.pullToRefresh, .pullToRefresh):
+            return true
+        case (.fail, .fail):
             return true
         default:
             return false
@@ -30,6 +39,12 @@ enum TestCase: Equatable {
         switch self {
         case .listRequest:
             return "listRequest"
+        case .imageUrl:
+            return "imageUrl"
+        case .pullToRefresh:
+            return "pullToRefresh"
+        case .fail:
+            return "fail"
         default:
             return "pageRequest"
         }
@@ -37,6 +52,8 @@ enum TestCase: Equatable {
 }
 
 class MovieListTests: XCTestCase {
+
+    var dispatchGroup  = DispatchGroup()
 
     var testCase: TestCase?
     var expectation: XCTestExpectation?
@@ -69,10 +86,64 @@ class MovieListTests: XCTestCase {
         expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
         viewModel?.request()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        dispatchGroup.enter()
+        dispatchGroup.notify(queue: .main) {
             self.viewModel?.request()
             self.testCase    = .pageRequest(true)
         }
+        
+        wait(for: [expectation!],
+             timeout: 10.0)
+    }
+    
+    func testImageUrlRequest() {
+        testCase    = .imageUrl
+        viewModel?.request()
+        
+        dispatchGroup.enter()
+        dispatchGroup.notify(queue: .main) {
+            if let path = self.viewModel?.getMoviePosterPathAt(0),
+                let urlString = path.getImageUrlStringWith(200),
+                let url = URL(string: urlString) {
+                XCTAssert(UIApplication.shared.canOpenURL(url) == true,
+                          "URL is valid")
+            }
+        }
+    }
+    
+    func testPullToRefresh() {
+        testCase    = .pullToRefresh
+        viewModel?.request()
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
+
+        dispatchGroup.enter()
+        dispatchGroup.notify(queue: .main) {
+            //Do Another request for the 2nd page
+            self.viewModel?.request()
+            
+            self.dispatchGroup.enter()
+            self.dispatchGroup.notify(queue: .main, execute: {
+
+                self.viewModel?.resetPage()
+                self.viewModel?.request()
+                
+                self.dispatchGroup.enter()
+                self.dispatchGroup.notify(queue: .main, execute: {
+                    XCTAssert(self.viewModel?.getMovieCount() == 20, "Pull to refresh resets the page")
+                    self.expectation?.fulfill()
+                })
+            })
+        }
+        
+        wait(for: [expectation!],
+             timeout: 10.0)
+    }
+    
+    func testFailable() {
+        testCase      = .fail
+        api?.failable = true
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
+        viewModel?.request()
         
         wait(for: [expectation!],
              timeout: 10.0)
@@ -89,10 +160,19 @@ extension MovieListTests: BaseVMDelegate {
                 if isComplete == true,
                     (self.viewModel?.movies.count ?? 0) > 20 {
                     expectation?.fulfill()
+                } else {
+                    dispatchGroup.leave()
                 }
+            case .imageUrl?:
+                dispatchGroup.leave()
+            case .pullToRefresh?:
+                dispatchGroup.leave()
             default:
                 break
             }
+        } else if viewState == .error(nil),
+            testCase == .fail {
+            expectation?.fulfill()
         }
     }
 }
