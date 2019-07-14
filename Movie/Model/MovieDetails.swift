@@ -38,16 +38,16 @@ struct MovieDetails: Codable {
     
     static func getIsoLanguageStringFrom(_ languages: [Language]) -> [String] {
         
-        return languages.compactMap({ $0.iso_639_1 ?? "" })
+        return languages.compactMap({ $0.iso_639_1 ?? blank_ })
     }
     
     static func getGenreNameStringFrom(_ genres: [Genre]) -> [String] {
         
-        return genres.compactMap({ $0.name ?? "" })
+        return genres.compactMap({ $0.name ?? blank_ })
     }
     
     static func getCompanyNameStringFrom(_ companies: [Company]) -> [String] {
         
-        return companies.compactMap({ $0.name ?? "" })
+        return companies.compactMap({ $0.name ?? blank_ })
     }
 }

@@ -14,7 +14,7 @@ extension URL {
     static func isvalidURL(string: String?) -> Bool {
         
         if string != nil{
-            if let url = NSURL(string: string ?? ""){
+            if let url = NSURL(string: string ?? blank_){
                 return UIApplication.shared.canOpenURL(url as URL)
             }
         }

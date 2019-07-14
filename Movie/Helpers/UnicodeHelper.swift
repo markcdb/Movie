@@ -68,7 +68,7 @@ extension String {
     // If anyone has suggestions how to improve this, please let me know
     var emojiString: String {
         
-        return emojiScalars.map { String($0) }.reduce("", +)
+        return emojiScalars.map { String($0) }.reduce(blank_, +)
     }
     
     var emojis: [String] {
@@ -91,7 +91,7 @@ extension String {
         
         scalars.append(currentScalarSet)
         
-        return scalars.map { $0.map{ String($0) } .reduce("", +) }
+        return scalars.map { $0.map{ String($0) } .reduce(blank_, +) }
     }
     
     var indexOfFirstEmoji: Int? {

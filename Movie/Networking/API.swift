@@ -37,13 +37,13 @@ class API {
     }
     
     private func createQueryString(from parameters: [String: Any]) -> String {
-        var queryString = ""
+        var queryString = blank_
         
         if parameters.keys.count > 0 {
             queryString.append("?")
             let sortedKeys = parameters.keys.sorted()
             for key in sortedKeys {
-                queryString.append("\(key)=\(parameters[key] ?? "")")
+                queryString.append("\(key)=\(parameters[key] ?? blank_)")
                 if sortedKeys.last != key {
                     queryString.append("&")
                 }
@@ -70,12 +70,12 @@ class API {
         //Check the request type
         switch method {
         case .get:
-            var queryString   = ""
+            var queryString   = blank_
             
             if let dict = parametersDict {
                 queryString   = createQueryString(from: dict)
                 queryString   = queryString.addingPercentEncoding(
-                                withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? ""
+                                withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? blank_
             }
           
             self.networking?.get(path,

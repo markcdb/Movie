@@ -16,11 +16,11 @@ enum ViewState: Equatable {
     internal func getString() -> String {
         switch self {
         case .loading(let str):
-            return str ?? ""
+            return str ?? blank_
         case .success(let str):
-            return str ?? ""
+            return str ?? blank_
         case .error(let str):
-            return str ?? ""
+            return str ?? blank_
         }
     }
     

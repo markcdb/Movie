@@ -42,9 +42,8 @@ class PagesWebView: UIView {
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var webView: WKWebView?
     
-    //private var serverError: ServerError!
     public weak var delegate: PagesWebViewDelegate?
-    private var urlString: String = ""
+    private var urlString: String = blank_
     private var loadingYOffset: CGFloat = 0.0
     
     private let activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0,
@@ -88,12 +87,6 @@ class PagesWebView: UIView {
         webView?.uiDelegate = self
         webView?.navigationDelegate = self
         
-        /*
-        serverError = ServerError(frame: bounds)
-        serverError.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        serverError.backgroundColor = .white
-        addSubview(serverError)
-        */
         loadUrl()
     }
     
@@ -124,20 +117,13 @@ class PagesWebView: UIView {
     func loadUrl() {
         if isvalidURL(string: urlString) {
             
-            //serverError.isHidden = true
             addActivityIndicator(loadingYOffset: loadingYOffset)
             
             let validUrlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-            if let myURL = URL(string: validUrlString ?? "") {
+            if let myURL = URL(string: validUrlString ?? blank_) {
                 let myRequest = URLRequest(url: myURL)
                 webView?.load(myRequest)
             }
-            else{
-                //serverError.isHidden = false
-            }
-        }
-        else {
-            //serverError.isHidden = false
         }
     }
     
@@ -150,7 +136,6 @@ extension PagesWebView: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  didFinish navigation: WKNavigation!) {
         removeActivityIndicator()
-        //serverError.isHidden = true
         
         delegate?.webView(webView, didFinish: navigation)
     }
@@ -160,14 +145,7 @@ extension PagesWebView: WKUIDelegate, WKNavigationDelegate {
                  withError error: Error) {
         
         removeActivityIndicator()
-        /*
-         
-         let err = error as NSError
-
-        if err.code != ErrorCode.cancelledRequest {
-            serverError.isHidden = false
-        }
-        */
+        
         delegate?.webView(webView, didFail: navigation, withError: error)
     }
     
@@ -176,13 +154,7 @@ extension PagesWebView: WKUIDelegate, WKNavigationDelegate {
                  withError error: Error) {
         
         removeActivityIndicator()
-        /*
-        let err = error as NSError
-
-        if err.code != ErrorCode.cancelledRequest {
-            serverError.isHidden = false
-        }
-        */
+       
         delegate?.webView(webView,
                           didFailProvisionalNavigation: navigation,
                           withError: error)

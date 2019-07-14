@@ -17,7 +17,7 @@ class WebViewController: BaseVC<WebViewModel> {
 
         self.title = Titles.bookMovie
         // Do any additional setup after loading the view.
-        webView?.initView(urlString: viewModel?.urlString ?? "",
+        webView?.initView(urlString: viewModel?.urlString ?? blank_,
                          loadingYOffset: -40)
     }
     

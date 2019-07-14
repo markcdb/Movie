@@ -99,7 +99,7 @@ class BaseMovieDetailsVM: BaseVMRepo<MovieRepository> {
     
     internal func getGenreString() -> String? {
         
-        let array = movie?.genres?.compactMap({ $0.name ?? "" })
+        let array = movie?.genres?.compactMap({ $0.name ?? blank_ })
         
         return array?.joined(separator: ", ")
     }
@@ -141,7 +141,7 @@ class BaseMovieDetailsVM: BaseVMRepo<MovieRepository> {
     
     internal func getSpokenLanguageString() -> String? {
         
-        let array = movie?.spoken_languages?.compactMap({ $0.name ?? "" })
+        let array = movie?.spoken_languages?.compactMap({ $0.name ?? blank_ })
         
         return array?.joined(separator: ", ")
     }

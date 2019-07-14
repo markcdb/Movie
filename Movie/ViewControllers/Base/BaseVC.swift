@@ -24,7 +24,7 @@ class BaseVC<T: BaseVMRequestProtocol>: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = attri
         }
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: blank_,
                                                            style: .plain,
                                                            target: nil,
                                                            action: nil)

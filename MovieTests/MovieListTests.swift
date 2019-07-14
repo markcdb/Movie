@@ -74,7 +74,7 @@ class MovieListTests: XCTestCase {
 
     func testListRequest() {
         testCase    = .listRequest
-        expectation = XCTestExpectation(description: "")
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? blank_)
         viewModel?.request()
         
         wait(for: [expectation!],
@@ -83,7 +83,7 @@ class MovieListTests: XCTestCase {
     
     func testListRequestPaging() {
         testCase    = .pageRequest(false)
-        expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? blank_)
         viewModel?.request()
         
         dispatchGroup.enter()
@@ -114,7 +114,7 @@ class MovieListTests: XCTestCase {
     func testPullToRefresh() {
         testCase    = .pullToRefresh
         viewModel?.request()
-        expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? blank_)
 
         dispatchGroup.enter()
         dispatchGroup.notify(queue: .main) {
@@ -142,7 +142,7 @@ class MovieListTests: XCTestCase {
     func testFailable() {
         testCase      = .fail
         api?.failable = true
-        expectation = XCTestExpectation(description: testCase?.rawValue ?? "")
+        expectation = XCTestExpectation(description: testCase?.rawValue ?? blank_)
         viewModel?.request()
         
         wait(for: [expectation!],

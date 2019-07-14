@@ -56,11 +56,11 @@ extension String {
     
     internal func containsAlphaNumericOnly() -> Bool {
         let regexStatement = "[^\\p{L}0-9]"
-        return self.range(of: regexStatement, options: .regularExpression) == nil && self != ""
+        return self.range(of: regexStatement, options: .regularExpression) == nil && self != blank_
     }
     
     internal func toDate() -> Date? {
-        if self == "" { return nil }
+        if self == blank_ { return nil }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -120,15 +120,16 @@ extension String {
     }
     
     internal func getImageUrlStringWith(_ size: CGFloat?) -> String? {
+        //"w92", "w154", "w185", "w342", "w500", "w780", or "original"
         var stringSize = "original"
         
         var widthSize: CGFloat?
         
         if let size = size {
             //Size lower than 200 will cause the api to return error
-            widthSize    = size < 200 ? 200 * 2 : size * 2
+            widthSize    = size < 200 ? 500 : 780
             
-            stringSize   = "w\(Int(round((widthSize ?? 0) / 100.0) * 100.0))"
+            stringSize   = "w\(Int(widthSize ?? 0))"
         }
         
         let url        = NetworkConfig.baseImageUrl.replacingOccurrences(of: URLParameters.width,

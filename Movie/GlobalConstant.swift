@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let blank_ = ""
+
 struct NetworkConfig {
     
     static let baseImageUrl = "https://image.tmdb.org/t/p/\(URLParameters.width)"
@@ -44,10 +46,6 @@ struct Cells {
     static let moviePreviewCell    = "MoviePreviewCell"
     static let movieHeaderCell     = "MovieHeaderCell"
     static let loaderCell          = "LoaderCell"
-    static let emptyCell           = "EmptyCell"
-    static let profileHeaderCell   = "ProfileHeaderCell"
-    static let fieldCell           = "FieldCell"
-    static let deleteCell          = "DeleteCell"
 }
 
 struct Nibs {
@@ -60,8 +58,6 @@ struct StoryboardIDs {
     
     static let webView             = "WebViewController"
     static let movieDetails        = "MovieDetailsViewController"
-    static let contactDetails      = "ContactDetailsVC"
-    static let createContact       = "CreateContactsVC"
 }
 
 struct URLParameters {
@@ -75,12 +71,6 @@ struct Titles {
     static let bookMovie = "Book movie"
     static let movies    = "Movies"
     static let details   = "Details"
-    static let contacts  = "Contacts"
-}
-
-struct Segues {
-    
-    static let locationDetails = "LocationDetailsVC"
 }
 
 struct Colors {
@@ -133,31 +123,13 @@ struct Notifications {
 struct Storyboard {
     
     static let movie    = UIStoryboard(name: "Movie", bundle: nil)
-    static let contacts = UIStoryboard(name: "Contacts", bundle: nil)
 }
 
 struct Strings {
     
-    static let firstName = "First Name"
-    static let lastName  = "Last Name"
-    static let mobile    = "mobile"
-    static let email     = "email"
     static let Cancel    = "Cancel"
     static let Next      = "Next"
     static let Done      = "Done"
     static let Ok        = "Ok"
-    static let invalidFirstName = "Invalid First Name"
-    static let invalidLastName  = "Invalid Last Name"
-    static let invalidEmail     = "Invalid Email Address"
-    static let invalidPhone     = "Invalid Phone Number"
-    static let oops             = "Oops!"
-    static let yey              = "Yey!"
-    static let uhm              = "Uhmm"
-    static let something        = "Something went wrong!\nPlease try again."
-    static let override         = "Are you sure you want to save the following changes?"
-    static let willDelete     = "Are you sure you want to delete this person?"
-    static let delete         = "Delete"
-    static let createdContact = "Successfully created NEW Contact! :)"
-    static let successDelete  = "Successfully deleted contact. :("
     static let mockId         = 429617
 }

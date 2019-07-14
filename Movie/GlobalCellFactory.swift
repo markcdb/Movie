@@ -50,7 +50,7 @@ class GlobalCellFactory {
         cell?.setMovieImage(backdropUrl,
                             posterUrl: posterUrl)
         
-        cell?.setWith(title: title ?? "",
+        cell?.setWith(title: title ?? blank_,
                       subTitle: String(popularity ?? 0))
         return cell
     }
@@ -71,7 +71,7 @@ class GlobalCellFactory {
         let posterUrl    = posterPath?.getImageUrlStringWith(cell?.posterImage?.frame.width)
         let backdropUrl  = backdropPath?.getImageUrlStringWith(cell?.backdropImage?.frame.width)
         
-        cell?.setWith(title: title ?? "",
+        cell?.setWith(title: title ?? blank_,
                       subTitle: String(popularity ?? 0.0))
         
         cell?.setMovieImage(backdropUrl,
@@ -86,9 +86,9 @@ class GlobalCellFactory {
                                        delegate: MovieDetailsCellDelegate) -> MovieDetailsCell? {
         
         let id           = Cells.movieDetailsCell
-        let sypnosis     = viewModel?.getOverview() ?? ""
-        let genres       = viewModel?.getGenreString() ?? ""
-        let languages    = viewModel?.getSpokenLanguageString() ?? ""
+        let sypnosis     = viewModel?.getOverview() ?? blank_
+        let genres       = viewModel?.getGenreString() ?? blank_
+        let languages    = viewModel?.getSpokenLanguageString() ?? blank_
         let runtime      = viewModel?.getRuntimeString()
         
         let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MovieDetailsCell
