@@ -36,4 +36,10 @@ class MovieDetailsViewModel: BaseMovieDetailsVM {
                             self.viewState.accept(.success(nil))
         })
     }
+    
+    override func retry() {
+        super.retry()
+        
+        request()
+    }
 }
