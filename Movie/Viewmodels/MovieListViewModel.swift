@@ -56,4 +56,11 @@ class MovieListViewModel: BaseMovieListVM {
         movieSorter?.page = 1
         movies.removeAll()
     }
+    
+    override func retry() {
+        super.retry()
+        
+        resetPage()
+        request()
+    }
 }
