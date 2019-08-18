@@ -30,14 +30,38 @@ class MovieDetailsTests: XCTestCase {
     func testRequest() {
         self.expectation = XCTestExpectation(description: "")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            
-            self.viewModel?.id = Strings.mockId
-            self.viewModel?.request()
-        }
+        self.viewModel?.id = Strings.mockId
+        self.viewModel?.request()
         
         self.wait(for: [self.expectation!],
                   timeout: 10.0)
+    }
+    
+    func testSimilarRequest() {
+        
+        self.viewModel?.id = Strings.mockId
+        self.viewModel?.getSimilar(completion: {[weak self] in
+            guard let self = self else { return }
+
+            XCTAssert((self.viewModel?.getMovieCount() ?? 0) > 0, "Movie count should be > 1")
+        })
+    }
+    
+    func testSimilarRequestPaging() {
+        
+        self.viewModel?.id = Strings.mockId
+        self.viewModel?.getSimilar(completion: {[weak self] in
+            guard let self = self else { return }
+            
+            if (self.viewModel?.getMovieCount() ?? 0) < 20 {
+                XCTFail("Movie count should be 20")
+                return
+            }
+            
+            self.viewModel?.getSimilar(completion: {
+                XCTAssert((self.viewModel?.getMovieCount() ?? 0) > 20, "Movie count should be > 1")
+            })
+        })
     }
 }
 

@@ -49,6 +49,7 @@ class MovieRepository: Repository<MovieDetails> {
     }
     
     func getSimilarFrom(id: String?,
+                        withSorter sorter: MovieSorter?,
                         completion: @escaping ArrayC) {
         guard let id = id else { return }
         
@@ -58,6 +59,8 @@ class MovieRepository: Repository<MovieDetails> {
         let request = Request(path: path,
                               method: .get)
         
+        request.createParametersFrom(sorter)
+
         createSuccessAndFail(request,
                              completion: completion)
     }

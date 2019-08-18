@@ -9,7 +9,7 @@
 import XCTest
 @testable import Movie
 
-enum TestCase: Equatable {
+fileprivate enum TestCase: Equatable {
     
     case listRequest
     case pageRequest(Bool)
@@ -55,7 +55,7 @@ class MovieListTests: XCTestCase {
 
     var dispatchGroup  = DispatchGroup()
 
-    var testCase: TestCase?
+    fileprivate var testCase: TestCase?
     var expectation: XCTestExpectation?
     var viewModel: MovieListViewModel?
     var api: MockMovieRepository?

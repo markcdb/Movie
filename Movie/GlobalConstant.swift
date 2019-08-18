@@ -133,5 +133,5 @@ struct Strings {
     static let Next      = "Next"
     static let Done      = "Done"
     static let Ok        = "Ok"
-    static let mockId         = 429617
+    static let mockId    = 429617
 }

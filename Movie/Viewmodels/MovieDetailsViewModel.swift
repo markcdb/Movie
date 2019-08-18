@@ -15,10 +15,14 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
     
     internal var id: Int?
     
+    private var movieSorter: MovieSorter?
+
     override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {
         super.init(delegate: delegate,
                    repository: repository)
+        
+        movieSorter = MovieSorter.defaultWithReleaseDate()
     }
     
     override func request() {
@@ -40,26 +44,36 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
         })
     }
     
-    override func retry() {
-        super.retry()
-        
-        request()
-    }
-    
-    func getSimilar() {
-        
-        viewState.accept(.loading(nil))
+    internal func getSimilar(completion: @escaping (() -> Void)) {
         
         repository?.getSimilarFrom(id: String(id ?? 0),
+                                   withSorter: movieSorter,
                                    completion: {[weak self] (movies, error) in
                                     guard let self = self else { return }
                                     
                                     if error != nil {
-                                        self.viewState.accept(.error(nil))
+                                        completion()
                                         return
                                     }
                                     
-                                    
+                                    let page = (self.movieSorter?.page ?? 0) + 1
+                                    self.movieSorter?.page = page
+
+                                    self.movies.append(contentsOf: movies ?? [])
+                                    completion()
         })
+    }
+    
+    override func retry() {
+        super.retry()
+        
+        resetPage()
+        request()
+    }
+    
+    internal func resetPage() {
+        
+        movieSorter?.page = 1
+        movies.removeAll()
     }
 }
