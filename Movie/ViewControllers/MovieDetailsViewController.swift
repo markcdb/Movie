@@ -81,11 +81,11 @@ UITableViewDelegate, UITableViewDataSource {
                                                 indexPath: indexPath)
         case .success(_)?:
             if indexPath.row == 0 {
-                cell = CellFactory.createMovieHeaderCell(viewModel: viewModel,
+                cell = CellFactory.createMovieHeaderCell(presenter: viewModel,
                                                          tableView: tableView,
                                                          indexPath: indexPath)
             } else {
-                cell = CellFactory.createMovieDetailsCell(viewModel: viewModel,
+                cell = CellFactory.createMovieDetailsCell(presenter: viewModel,
                                                           tableView: tableView,
                                                           indexPath: indexPath,
                                                           delegate: self)

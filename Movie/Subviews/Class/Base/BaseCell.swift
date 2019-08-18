@@ -38,3 +38,17 @@ class BaseCell: UITableViewCell {
         subTitleLabel?.text = subTitle
     }
 }
+
+class BaseCollectionCell: UICollectionViewCell {
+    
+    internal func setImageFrom(_ urlString: String,
+                               imageView: inout UIImageView?,
+                               completion: CompletionHandler? = nil) {
+        
+        imageView?.setKFImage(with: urlString,
+                              placeholder: nil,
+                              shouldAnimate: true,
+                              keepCurrentImageWhileLoading: false,
+                              completion: completion)
+    }
+}

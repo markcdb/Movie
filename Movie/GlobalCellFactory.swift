@@ -33,15 +33,15 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMoviePreviewCell(viewModel: MovieListViewModel?,
+    static func createMoviePreviewCell(presenter: MovieListPresenter?,
                                        tableView: UITableView,
                                        indexPath: IndexPath) -> MoviePreviewCell? {
         
         let id           = Cells.moviePreviewCell
-        let title        = viewModel?.getMovieTitleAt(indexPath.row)
-        let popularity   = viewModel?.getMoviePopularityAt(indexPath.row)
-        let posterPath   = viewModel?.getMoviePosterPathAt(indexPath.row)
-        let backdropPath = viewModel?.getBackdropPathAt(indexPath.row)
+        let title        = presenter?.getMovieTitleAt(indexPath.row)
+        let popularity   = presenter?.getMoviePopularityAt(indexPath.row)
+        let posterPath   = presenter?.getMoviePosterPathAt(indexPath.row)
+        let backdropPath = presenter?.getBackdropPathAt(indexPath.row)
         let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MoviePreviewCell
         
         let posterUrl    = posterPath?.getImageUrlStringWith(cell?.posterImage?.frame.width)
@@ -55,15 +55,15 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMovieHeaderCell(viewModel: MovieDetailsViewModel?,
+    static func createMovieHeaderCell(presenter: MovieDetailsPresenter?,
                                       tableView: UITableView,
                                       indexPath: IndexPath) -> MovieHeaderCell? {
         
         let id           = Cells.movieHeaderCell
-        let posterPath   = viewModel?.getMoviePosterPath()
-        let backdropPath = viewModel?.getBackdropPath()
-        let title        = viewModel?.getMovieTitle()
-        let popularity   = viewModel?.getMoviePopularity()
+        let posterPath   = presenter?.getMoviePosterPath()
+        let backdropPath = presenter?.getBackdropPath()
+        let title        = presenter?.getMovieTitle()
+        let popularity   = presenter?.getMoviePopularity()
 
         //let duration     = viewMode
         let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MovieHeaderCell
@@ -80,16 +80,16 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMovieDetailsCell(viewModel: MovieDetailsViewModel?,
+    static func createMovieDetailsCell(presenter: MovieDetailsPresenter?,
                                        tableView: UITableView,
                                        indexPath: IndexPath,
                                        delegate: MovieDetailsCellDelegate) -> MovieDetailsCell? {
         
         let id           = Cells.movieDetailsCell
-        let sypnosis     = viewModel?.getOverview() ?? blank_
-        let genres       = viewModel?.getGenreString() ?? blank_
-        let languages    = viewModel?.getSpokenLanguageString() ?? blank_
-        let runtime      = viewModel?.getRuntimeString()
+        let sypnosis     = presenter?.getOverview() ?? blank_
+        let genres       = presenter?.getGenreString() ?? blank_
+        let languages    = presenter?.getSpokenLanguageString() ?? blank_
+        let runtime      = presenter?.getRuntimeString()
         
         let cell         = tableView.dequeueReusableCell(withIdentifier: id) as? MovieDetailsCell
         
@@ -98,6 +98,23 @@ class GlobalCellFactory {
         cell?.languagesLabel?.text  = languages.isEmpty == true ? "n/a" : languages
         cell?.durationLabel?.text   = runtime
         cell?.delegate              = delegate
+        
+        return cell
+    }
+    
+    static func createSimilarMovieCell(presenter: MovieListPresenter?,
+                                       collectionView: UICollectionView,
+                                       indexPath: IndexPath) -> SimilarCell? {
+        let id          = Cells.similarCell
+        let title       = presenter?.getMovieTitleAt(indexPath.row)
+        let posterPath  = presenter?.getMoviePosterPathAt(indexPath.row)
+        
+        let cell          = collectionView.dequeueReusableCell(withReuseIdentifier: id,
+                                                             for: indexPath) as? SimilarCell
+        
+        let posterUrl     = posterPath?.getImageUrlStringWith(cell?.imageView?.frame.width)
+        cell?.title?.text = title
+        cell?.setMovieImage(posterUrl: posterUrl)
         
         return cell
     }

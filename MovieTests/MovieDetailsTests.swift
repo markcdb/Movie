@@ -20,7 +20,6 @@ class MovieDetailsTests: XCTestCase {
         api         = MockMovieRepository()
         viewModel   = GlobalVMFactory.createMovieDetailsVM(repository: api,
                                                            delegate: self)
-        
     }
 
     override func tearDown() {

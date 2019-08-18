@@ -96,7 +96,7 @@ UITableViewDataSource {
         
         switch viewModel?.viewState.value {
         case .success(_)?:
-            cell = CellFactory.createMoviePreviewCell(viewModel: viewModel,
+            cell = CellFactory.createMoviePreviewCell(presenter: viewModel,
                                                       tableView: tableView,
                                                       indexPath: indexPath)
         case .error(_)?:

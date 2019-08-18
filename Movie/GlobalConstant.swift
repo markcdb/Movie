@@ -47,6 +47,8 @@ struct Cells {
     static let movieDetailsCell    = "MovieDetailsCell"
     static let moviePreviewCell    = "MoviePreviewCell"
     static let movieHeaderCell     = "MovieHeaderCell"
+    static let similarCell         = "SimilarCell"
+    static let similarMovieCell    = "SimilarMovieCell"
     static let loaderCell          = "LoaderCell"
 }
 
