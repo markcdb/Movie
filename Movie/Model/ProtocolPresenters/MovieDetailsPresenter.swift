@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BaseMovieDetails {
+protocol MovieDetailsPresenter {
     var movie: MovieDetails? { get set }
 
     func getMovieId() -> Int?
@@ -41,7 +41,7 @@ protocol BaseMovieDetails {
     func getTagline() -> String?
 }
 
-extension BaseMovieDetails {
+extension MovieDetailsPresenter {
     func getMovieId() -> Int? {
         
         return movie?.id

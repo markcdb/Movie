@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BaseMovieList {
+protocol MovieListPresenter {
     
     var movies: [MovieDetails] { get set }
     
@@ -43,7 +43,7 @@ protocol BaseMovieList {
     func getCompanyNameStringAt(_ index: Int) -> [String]
 }
 
-extension BaseMovieList {
+extension MovieListPresenter {
     
     func getMovieCount() -> Int {
         

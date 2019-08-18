@@ -8,9 +8,7 @@
 
 import Foundation
 
-class MovieDetailsViewModel: BaseVMRepo<MovieRepository>,
-BaseMovieList,
-BaseMovieDetails {
+class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, MovieDetailsPresenter {
     internal var movie: MovieDetails?
     
     internal var movies: [MovieDetails] = []
