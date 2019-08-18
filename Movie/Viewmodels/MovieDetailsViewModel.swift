@@ -8,7 +8,12 @@
 
 import Foundation
 
-class MovieDetailsViewModel: BaseMovieDetailsVM {
+class MovieDetailsViewModel: BaseVMRepo<MovieRepository>,
+BaseMovieList,
+BaseMovieDetails {
+    internal var movie: MovieDetails?
+    
+    internal var movies: [MovieDetails] = []
     
     internal var id: Int?
     
@@ -41,5 +46,22 @@ class MovieDetailsViewModel: BaseMovieDetailsVM {
         super.retry()
         
         request()
+    }
+    
+    func getSimilar() {
+        
+        viewState.accept(.loading(nil))
+        
+        repository?.getSimilarFrom(id: String(id ?? 0),
+                                   completion: {[weak self] (movies, error) in
+                                    guard let self = self else { return }
+                                    
+                                    if error != nil {
+                                        self.viewState.accept(.error(nil))
+                                        return
+                                    }
+                                    
+                                    
+        })
     }
 }

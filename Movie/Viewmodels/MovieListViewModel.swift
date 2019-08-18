@@ -10,7 +10,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MovieListViewModel: BaseMovieListVM {
+class MovieListViewModel: BaseVMRepo<MovieRepository>, BaseMovieList {
+    internal var movies: [MovieDetails] = []
     
     private var movieSorter: MovieSorter?
     

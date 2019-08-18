@@ -16,11 +16,11 @@ class MovieRepository: Repository<MovieDetails> {
     override func getList<U: Codable>(params: U?,
                                       completion: @escaping ArrayC) {
         guard let param = params else { return }
-        
+
         super.getList(params: params,
                       completion: completion)
         
-        let path = Paths.discover
+        let path = Paths.nowPlaying
         
         let request = Request(path: path,
                               method: .get)
@@ -40,6 +40,20 @@ class MovieRepository: Repository<MovieDetails> {
         
         let path = Paths.movie.replacingOccurrences(of: URLParameters.id,
                                                     with: String(param))
+        
+        let request = Request(path: path,
+                              method: .get)
+        
+        createSuccessAndFail(request,
+                             completion: completion)
+    }
+    
+    func getSimilarFrom(id: String?,
+                        completion: @escaping ArrayC) {
+        guard let id = id else { return }
+        
+        let path = Paths.similar.replacingOccurrences(of: URLParameters.id,
+                                                      with: id)
         
         let request = Request(path: path,
                               method: .get)

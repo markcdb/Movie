@@ -21,9 +21,11 @@ struct NetworkConfig {
 
 struct Paths {
     
-    static let testPath = "XCTestConfigurationFilePath"
-    static let discover = "/discover/movie" //GET & POST
-    static let movie    = "/movie/\(URLParameters.id)" //GET, PUT & DELETE
+    static let testPath   = "XCTestConfigurationFilePath"
+    static let discover   = "/discover/movie" //GET & POST
+    static let nowPlaying = "/movie/now_playing"
+    static let movie      = "/movie/\(URLParameters.id)" //GET, PUT & DELETE
+    static let similar    = "\(Paths.movie)/similar"
 }
 
 struct Keys {

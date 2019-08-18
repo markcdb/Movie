@@ -17,6 +17,7 @@ extension UIViewController {
                                     cancelTitle: String?,
                                     acceptTitle: String?,
                                     completion: (() -> Void)? = nil) {
+        
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: UIAlertController.Style.alert)

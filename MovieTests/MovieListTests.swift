@@ -142,7 +142,7 @@ class MovieListTests: XCTestCase {
     func testFailable() {
         testCase      = .fail
         api?.failable = true
-        expectation = XCTestExpectation(description: testCase?.rawValue ?? blank_)
+        expectation   = XCTestExpectation(description: testCase?.rawValue ?? blank_)
         viewModel?.request()
         
         wait(for: [expectation!],
