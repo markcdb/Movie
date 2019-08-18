@@ -32,10 +32,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXy-LB-7jX">
-                                <rect key="frame" x="0.0" y="136" width="366" height="32.5"/>
+                                <rect key="frame" x="0.0" y="139" width="366" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmx-cf-mhp" userLabel="Genres:" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="32.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="ib1-0O-6UH"/>
                                         </constraints>
@@ -47,7 +47,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Action, Comedy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAI-rc-mkK" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="0.0" width="278" height="32.5"/>
+                                        <rect key="frame" x="88" y="0.0" width="278" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -69,10 +69,10 @@
                                 <viewLayoutGuide key="safeArea" id="1hb-he-ZGF"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRv-7u-tZF">
-                                <rect key="frame" x="0.0" y="178.5" width="366" height="20"/>
+                                <rect key="frame" x="0.0" y="201.5" width="366" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSj-dK-9fu" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Qed-7B-B1l"/>
                                         </constraints>
@@ -84,7 +84,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="En, Fil, Man" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-Hu-1hN" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="0.0" width="278" height="20"/>
+                                        <rect key="frame" x="88" y="0.0" width="278" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -106,10 +106,10 @@
                                 <viewLayoutGuide key="safeArea" id="nn7-3g-E5t"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtW-C0-kxX">
-                                <rect key="frame" x="0.0" y="208.5" width="366" height="20"/>
+                                <rect key="frame" x="0.0" y="264.5" width="366" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwT-gm-LfN" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="6bV-R6-dTG"/>
                                         </constraints>
@@ -121,7 +121,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="120 minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6T-Xz-crP" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="0.0" width="270" height="20"/>
+                                        <rect key="frame" x="88" y="0.0" width="270" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -141,36 +141,6 @@
                                     <constraint firstItem="NwT-gm-LfN" firstAttribute="top" secondItem="qtW-C0-kxX" secondAttribute="top" id="yUe-hF-Va6"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiC-fO-nbe">
-                                <rect key="frame" x="0.0" y="238.5" width="366" height="76"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2v-F4-GEK">
-                                        <rect key="frame" x="0.0" y="8" width="366" height="60"/>
-                                        <color key="backgroundColor" red="0.31372549020000001" green="0.89019607840000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="akQ-L6-5pJ"/>
-                                        </constraints>
-                                        <state key="normal" title="Book Now">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTapBookButton:" destination="jhb-nb-O9U" eventType="touchUpInside" id="DvA-Pt-FUu"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="H2v-F4-GEK" firstAttribute="top" secondItem="fiC-fO-nbe" secondAttribute="top" constant="8" id="CHG-3C-WXA"/>
-                                    <constraint firstAttribute="trailing" secondItem="H2v-F4-GEK" secondAttribute="trailing" id="WyC-OH-Oeu"/>
-                                    <constraint firstItem="H2v-F4-GEK" firstAttribute="leading" secondItem="fiC-fO-nbe" secondAttribute="leading" id="ozT-li-vAv"/>
-                                    <constraint firstAttribute="bottom" secondItem="H2v-F4-GEK" secondAttribute="bottom" constant="8" id="qIE-cm-Fum"/>
-                                </constraints>
-                            </view>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -182,7 +152,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="bookButton" destination="H2v-F4-GEK" id="Ye8-ir-Ynf"/>
                 <outlet property="durationLabel" destination="K6T-Xz-crP" id="plu-qW-vI4"/>
                 <outlet property="genresLabel" destination="DAI-rc-mkK" id="lK5-oA-250"/>
                 <outlet property="languagesLabel" destination="ONB-Hu-1hN" id="Qrr-wt-tMB"/>

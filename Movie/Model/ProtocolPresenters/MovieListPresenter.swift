@@ -11,7 +11,8 @@ import Foundation
 protocol MovieListPresenter {
     
     var movies: [MovieDetails] { get set }
-    
+    var movieSorter: MovieSorter? { get set }
+
     func getMovieCount() -> Int
     func getMovieIdAt(_ index: Int) -> Int?
     func getMovieVoteCountAt(_ index: Int) -> Int?

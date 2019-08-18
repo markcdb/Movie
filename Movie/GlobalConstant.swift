@@ -47,8 +47,9 @@ struct Cells {
     static let movieDetailsCell    = "MovieDetailsCell"
     static let moviePreviewCell    = "MoviePreviewCell"
     static let movieHeaderCell     = "MovieHeaderCell"
+    static let movieSimilarCell    = "MovieSimilarCell"
     static let similarCell         = "SimilarCell"
-    static let similarMovieCell    = "SimilarMovieCell"
+    static let loaderCVCell        = "LoaderCVCell"
     static let loaderCell          = "LoaderCell"
 }
 
@@ -75,6 +76,7 @@ struct Titles {
     static let bookMovie = "Book movie"
     static let movies    = "Movies"
     static let details   = "Details"
+    static let pagingLimit = "Reached end page."
 }
 
 struct Colors {
@@ -136,4 +138,5 @@ struct Strings {
     static let Done      = "Done"
     static let Ok        = "Ok"
     static let mockId    = 429617
+    static let pagingLimit = "com.paging.limitReached"
 }

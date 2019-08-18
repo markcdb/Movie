@@ -94,7 +94,7 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
     
     internal func createSuccessAndFail<T: Codable>(_ request: Request,
                                                    completion: @escaping ((T?, Error?) -> ()),
-                                                   operationBlock: ((inout T, DispatchGroup) -> ())? = nil ) {
+                                                   operationBlock: ((inout T?, DispatchGroup) -> ())? = nil ) {
         
         request.successCompletion = {[weak self] response in
             guard let self = self else { return }
@@ -110,17 +110,22 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
                 do {
                     self.group.enter()
                     
-                    var object: T
+                    var object: T?
                     
-                    if let arrayCodable = try? JSONDecoder().decode(ResponseArray<T>.self,
-                                                                    from: response.data),
-                        let res = arrayCodable.results {
+                    if let obj = try? JSONDecoder().decode(T.self,
+                                                              from: response.data) {
+                        object = obj
+                    } else if let arrayCodable = try? JSONDecoder().decode(ResponseArray<T>.self,
+                                                                           from: response.data) {
+                        if let page = arrayCodable.page,
+                            let totalPage = arrayCodable.total_pages,
+                            page > totalPage {
+                            throw self.injectLastPageError()
+                        }
                         
-                        object = res
-                    } else {
-                        
-                        object = try JSONDecoder().decode(T.self,
-                                                          from: response.data)
+                        if let res = arrayCodable.results {
+                            object = res
+                        }
                     }
 
                     if let block = operationBlock {
@@ -151,5 +156,11 @@ class Repository<T: Codable>: MainRepositoryProtocol, RepositoryProtocol {
         }
         
         requests.append(request)
+    }
+    
+    func injectLastPageError() -> ErrorResponse {
+        
+        return ErrorResponse(statusCode: Strings.pagingLimit,
+                             error: Titles.pagingLimit)
     }
 }

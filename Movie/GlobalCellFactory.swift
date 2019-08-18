@@ -102,9 +102,26 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createSimilarMovieCell(presenter: MovieListPresenter?,
-                                       collectionView: UICollectionView,
-                                       indexPath: IndexPath) -> SimilarCell? {
+    static func createMovieSimilarCell(presenter: MovieListPresenter?,
+                                       tableView: UITableView,
+                                       indexPath: IndexPath,
+                                       delegate: MovieSimilarCellDelegate) -> MovieSimilarCell? {
+        
+        let id          = Cells.movieSimilarCell
+        
+        let cell        = tableView.dequeueReusableCell(withIdentifier: id) as? MovieSimilarCell
+        cell?.presenter = presenter
+        cell?.delegate  = delegate
+        
+        cell?.collectionView?.reloadSections([0])
+        
+        return cell
+    }
+    
+    static func createSimilarCell(presenter: MovieListPresenter?,
+                                  collectionView: UICollectionView,
+                                  indexPath: IndexPath) -> SimilarCell? {
+        
         let id          = Cells.similarCell
         let title       = presenter?.getMovieTitleAt(indexPath.row)
         let posterPath  = presenter?.getMoviePosterPathAt(indexPath.row)
@@ -115,6 +132,19 @@ class GlobalCellFactory {
         let posterUrl     = posterPath?.getImageUrlStringWith(cell?.imageView?.frame.width)
         cell?.title?.text = title
         cell?.setMovieImage(posterUrl: posterUrl)
+        
+        return cell
+    }
+    
+    static func createLoaderCVCell(collectionView: UICollectionView,
+                                   indexPath: IndexPath) -> LoaderCVCell? {
+        
+        let id          = Cells.loaderCVCell
+        
+        let cell        = collectionView.dequeueReusableCell(withReuseIdentifier: id,
+                                                             for: indexPath) as? LoaderCVCell
+        
+        cell?.activityIndicator?.startAnimating()
         
         return cell
     }

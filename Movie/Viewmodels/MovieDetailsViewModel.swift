@@ -15,7 +15,7 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
     
     internal var id: Int?
     
-    private var movieSorter: MovieSorter?
+    internal var movieSorter: MovieSorter?
 
     override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {
@@ -52,15 +52,19 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
                                     guard let self = self else { return }
                                     
                                     if error != nil {
+                                        if error?.localizedDescription == Titles.pagingLimit {
+                                            self.movieSorter?.isLastPage = true
+                                        }
+                                        
                                         completion()
                                         return
                                     }
                                     
-                                    let page = (self.movieSorter?.page ?? 0) + 1
-                                    self.movieSorter?.page = page
-
                                     self.movies.append(contentsOf: movies ?? [])
                                     completion()
+                                    
+                                    let page = (self.movieSorter?.page ?? 0) + 1
+                                    self.movieSorter?.page = page
         })
     }
     

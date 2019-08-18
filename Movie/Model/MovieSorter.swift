@@ -31,7 +31,8 @@ struct MovieSorter: Codable {
     var with_release_type: String?
     var with_original_language: String?
     var without_keywords: String?
-
+    var isLastPage: Bool?
+    
     enum CodingKeys: String, CodingKey {
         
         case language               = "language"
@@ -80,6 +81,7 @@ struct MovieSorter: Codable {
                            without_genres: nil,
                            with_release_type: nil,
                            with_original_language: nil,
-                           without_keywords: nil)
+                           without_keywords: nil,
+                           isLastPage: nil)
     }
 }

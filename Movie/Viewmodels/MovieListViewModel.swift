@@ -11,9 +11,10 @@ import RxSwift
 import RxCocoa
 
 class MovieListViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter {
+    internal var movieSorter: MovieSorter?
+    
     internal var movies: [MovieDetails] = []
     
-    private var movieSorter: MovieSorter?
     
     override init(delegate: BaseVMDelegate?,
                   repository: MovieRepository) {

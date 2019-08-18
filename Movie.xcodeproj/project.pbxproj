@@ -85,6 +85,8 @@
 		F8923E7022D890070001DC29 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8923E6F22D890070001DC29 /* DateHelper.swift */; };
 		F8A2BF1E22D975CD00FF3013 /* LoaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8A2BF1D22D975CD00FF3013 /* LoaderView.xib */; };
 		F8D191D222D8BE4000DF0880 /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D191D122D8BE4000DF0880 /* MovieDetailsPresenter.swift */; };
+		F8FAC0162309C7F900CD55B4 /* LoaderCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FAC0152309C7F900CD55B4 /* LoaderCVCell.xib */; };
+		F8FAC0182309C83000CD55B4 /* LoaderCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FAC0172309C83000CD55B4 /* LoaderCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		F8923E6F22D890070001DC29 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		F8A2BF1D22D975CD00FF3013 /* LoaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoaderView.xib; sourceTree = "<group>"; };
 		F8D191D122D8BE4000DF0880 /* MovieDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenter.swift; sourceTree = "<group>"; };
+		F8FAC0152309C7F900CD55B4 /* LoaderCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoaderCVCell.xib; sourceTree = "<group>"; };
+		F8FAC0172309C83000CD55B4 /* LoaderCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +360,7 @@
 				F891739E23094242002D211C /* MovieSimilarCell.swift */,
 				F866483922D582AD00AC408D /* Base */,
 				F89173A023094440002D211C /* SimilarCell.swift */,
+				F8FAC0172309C83000CD55B4 /* LoaderCVCell.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				F8917398230940B4002D211C /* SimilarCell.xib */,
+				F8FAC0152309C7F900CD55B4 /* LoaderCVCell.xib */,
 			);
 			path = CollectionviewCell;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				F866480822D581AA00AC408D /* Assets.xcassets in Resources */,
 				F8923E6822D85FC90001DC29 /* GET-movie-429617.json in Resources */,
 				F866485F22D582AE00AC408D /* SectionHeaderView.xib in Resources */,
+				F8FAC0162309C7F900CD55B4 /* LoaderCVCell.xib in Resources */,
 				F8923E6A22D86C670001DC29 /* MoviePreviewCell.xib in Resources */,
 				F85EA5F922DA5C8800A93273 /* MovieHeaderCell.xib in Resources */,
 			);
@@ -739,6 +746,7 @@
 				F85EA5EB22DA44DB00A93273 /* GlobalViewFactory.swift in Sources */,
 				F866488022D5ACAA00AC408D /* MovieListViewController.swift in Sources */,
 				F8923E6E22D873910001DC29 /* MovieListPresenter.swift in Sources */,
+				F8FAC0182309C83000CD55B4 /* LoaderCVCell.swift in Sources */,
 				F866488B22D5CF3B00AC408D /* MovieCollection.swift in Sources */,
 				F85EA5FF22DA610B00A93273 /* MovieDetailsCell.swift in Sources */,
 				F8923E6122D8290F0001DC29 /* MovieSorter.swift in Sources */,
@@ -933,7 +941,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 86TST43N9D;
 				INFOPLIST_FILE = Movie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -955,7 +963,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 86TST43N9D;
 				INFOPLIST_FILE = Movie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -975,7 +983,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 86TST43N9D;
 				INFOPLIST_FILE = MovieTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -996,7 +1004,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 86TST43N9D;
 				INFOPLIST_FILE = MovieTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

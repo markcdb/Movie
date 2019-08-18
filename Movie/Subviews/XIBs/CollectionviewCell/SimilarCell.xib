@@ -11,20 +11,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="14i-Qk-vVQ">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimilarCell" id="14i-Qk-vVQ" customClass="SimilarCell" customModule="Movie" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="165" height="192"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                 <rect key="frame" x="0.0" y="0.0" width="165" height="192"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ffh" translatesAutoresizingMaskIntoConstraints="NO" id="TTP-6S-Cec">
-                        <rect key="frame" x="0.0" y="0.0" width="165" height="170.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" image="ffh" translatesAutoresizingMaskIntoConstraints="NO" id="TTP-6S-Cec">
+                        <rect key="frame" x="0.0" y="0.0" width="165" height="153"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spider-man: Far From Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13b-zY-ia7">
-                        <rect key="frame" x="0.0" y="174.5" width="165" height="17.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spider-man: Far From Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13b-zY-ia7">
+                        <rect key="frame" x="0.0" y="157" width="165" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="SAz-Bi-WKF"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -40,6 +43,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="60I-RL-vIn"/>
             <size key="customSize" width="165" height="192"/>
+            <connections>
+                <outlet property="imageView" destination="TTP-6S-Cec" id="5SF-U0-2UK"/>
+                <outlet property="title" destination="13b-zY-ia7" id="RkX-vD-UBt"/>
+            </connections>
             <point key="canvasLocation" x="221.01449275362322" y="200.22321428571428"/>
         </collectionViewCell>
     </objects>

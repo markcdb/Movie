@@ -14,7 +14,10 @@ UITableViewDelegate, UITableViewDataSource {
     let cellIdentifiers = [Cells.loaderCell,
                            Cells.errorCell,
                            Cells.movieHeaderCell,
-                           Cells.movieDetailsCell]
+                           Cells.movieDetailsCell,
+                           Cells.movieSimilarCell]
+    
+    var isFetchingSimilar: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +67,7 @@ UITableViewDelegate, UITableViewDataSource {
                    numberOfRowsInSection section: Int) -> Int {
         
         if viewModel?.viewState.value == .success(nil) {
-            return 2
+            return 3
         }
         
         return 1
@@ -84,8 +87,13 @@ UITableViewDelegate, UITableViewDataSource {
                 cell = CellFactory.createMovieHeaderCell(presenter: viewModel,
                                                          tableView: tableView,
                                                          indexPath: indexPath)
-            } else {
+            } else if indexPath.row == 1 {
                 cell = CellFactory.createMovieDetailsCell(presenter: viewModel,
+                                                          tableView: tableView,
+                                                          indexPath: indexPath,
+                                                          delegate: self)
+            } else {
+                cell = CellFactory.createMovieSimilarCell(presenter: viewModel,
                                                           tableView: tableView,
                                                           indexPath: indexPath,
                                                           delegate: self)
@@ -114,8 +122,26 @@ extension MovieDetailsViewController {
             return
         }
         
+        viewModel?.resetPage()
         tableView?.beginRefreshing()
         viewModel?.request()
+    }
+    
+    func getSimilar() {
+        guard isFetchingSimilar == false else { return }
+        
+        isFetchingSimilar = true
+        
+        viewModel?.getSimilar {[weak self] in
+            guard let self = self else { return }
+            
+            let idx = IndexPath(row: 2, section: 0)
+            if let cell = self.tableView?.cellForRow(at: idx) as? MovieSimilarCell {
+                cell.collectionView?.reloadSections([0])
+            }
+        
+            self.isFetchingSimilar = false
+        }
     }
 }
 
@@ -128,6 +154,7 @@ extension MovieDetailsViewController: BaseVMDelegate {
              .error(_):
             tableView?.endRefreshing()
             tableView?.reloadData()
+            getSimilar()
         default:
             break
         }
@@ -138,5 +165,19 @@ extension MovieDetailsViewController: MovieDetailsCellDelegate {
     
     func didTapBookButton() {
         push()
+    }
+}
+
+extension MovieDetailsViewController: MovieSimilarCellDelegate {
+    func fetchNewPage() {
+        getSimilar()
+    }
+    
+    func didTapCellWithId(_ id: Int) {
+        
+        if let vc = GlobalVCFactory.createMovieDetailsWithId(id) {
+            navigationController?.pushViewController(vc,
+                                                     animated: true)
+        }
     }
 }
